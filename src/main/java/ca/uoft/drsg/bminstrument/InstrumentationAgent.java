@@ -3,7 +3,7 @@ package ca.uoft.drsg.bminstrument;
 import java.lang.instrument.Instrumentation;
 
 
-public class SimpleAgent {
+public class InstrumentationAgent {
     public static void premain(String argument, 
                              Instrumentation instrumentation) {
         System.out.println("WOW IT IS running!");
