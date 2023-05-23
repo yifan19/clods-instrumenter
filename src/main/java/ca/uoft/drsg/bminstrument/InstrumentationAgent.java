@@ -6,13 +6,10 @@ import java.lang.instrument.Instrumentation;
 public class InstrumentationAgent {
     public static void premain(String argument, 
                              Instrumentation instrumentation) {
-        System.out.println("WOW IT IS running!");
-        // DisruptorBuffer.startServer();
-        // MyBuffer.init();
-        // MyBuffer.init();
-        // MyBuffer.init();
-        // MyBuffer.init();
-        instrumentation.addTransformer(new MyTransformer());
+        System.out.println("premain running...");
+        Rule CHANGME = new Rule("bar", "foo", 0, "baz");
+        // start registering instrumentation
+        instrumentation.addTransformer(new Transformer(CHANGME));
 
     }
 
