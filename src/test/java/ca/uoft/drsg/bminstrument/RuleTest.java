@@ -16,7 +16,6 @@ public class RuleTest {
   
   @BeforeAll
   public static void init() {
-    System.out.println("wow");
     rb = RuleBook.getInstance();
     // System.out.println(rb);
   }
@@ -48,11 +47,15 @@ public class RuleTest {
 
   @Test  
   public void testRuleDeletion() {  
-    // Rule r = new Rule("hello", "bye", 10);
-    // rb.insert(r);
-    // System.out.println(rb);
-    // assertTrue(false);
-    rb.clear();
-  }
+    Rule r1 = new Rule("hello", "bye", 10, "foo");
+    Rule r2 = new Rule("hello", "bye2", 11, "foo2");
+    rb.add(r1);
+    rb.add(r2);
+    assertEquals(2, rb.size());
+    assertEquals("[hello.bye#10:foo, hello.bye2#11:foo2]",rb.toString());
+    rb.removeById(r1.getId());
+    assertEquals(1, rb.size());
+    assertEquals("[hello.bye2#11:foo2]",rb.toString());
 
+   }
 }
