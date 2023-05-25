@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader; 
 
-import java.util.StringTokenizer;  
 /* thread that listens to the static analysis tool analysis result 
  * format: Add instrumentation plan (.properties file)
  * returns ruleID if successful
@@ -28,7 +27,7 @@ public class Listener extends Thread {
     public void parse(String line) {
         return;
     }
-
+    @Override
     public void run() {
         System.out.println("Starting listener thread");
 

@@ -41,7 +41,12 @@ public class Rule {
         return variableName;
     }
     public boolean register() {
-        return false;
+        if (InstrumentationAgent.instrumentation == null) {
+            System.out.println("Error: this is fine during unit testing");
+            return false;
+        }
+        InstrumentationAgent.instrumentation.addTransformer(new Transformer(this));
+        return true;
     }
 
     public boolean unregister() {

@@ -17,6 +17,7 @@ public class RuleTest {
   @BeforeAll
   public static void init() {
     rb = RuleBook.getInstance();
+    rb.clear();
     // System.out.println(rb);
   }
 

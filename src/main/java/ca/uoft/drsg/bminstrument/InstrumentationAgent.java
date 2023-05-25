@@ -4,12 +4,15 @@ import java.lang.instrument.Instrumentation;
 
 
 public class InstrumentationAgent {
+    public static Instrumentation instrumentation;
     public static void premain(String argument, 
                              Instrumentation instrumentation) {
         System.out.println("premain running...");
-        Rule CHANGME = new Rule("bar", "foo", 0, "baz");
+        InstrumentationAgent.instrumentation = instrumentation;
+        Listener listener = new Listener(8089);
+        listener.start();
+        // Rule CHANGME = new Rule("bar", "foo", 0, "baz");
         // start registering instrumentation
-        instrumentation.addTransformer(new Transformer(CHANGME));
 
     }
 
