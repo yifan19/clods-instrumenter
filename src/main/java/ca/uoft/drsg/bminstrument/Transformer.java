@@ -32,6 +32,8 @@ public class Transformer implements ClassFileTransformer {
 
 		//Add instrumentation to Sample class alone
 		if (className.equals(classNameSlash)) {
+			LOG.info("found class: start transforming {}", className);
+
 			try {
 				ClassPool classPool = ClassPool.getDefault();
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
@@ -44,7 +46,7 @@ public class Transformer implements ClassFileTransformer {
 
 				CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
 				instrumentedMethod.insertAt(rule.getlineNumber(), 
-					"LOG.info(" + rule.getVariableName() + ");");
+					"System.out.println(" + rule.getVariableName() + ");");
                 			
 				byteCode = ctClass.toBytecode();
 				ctClass.detach();

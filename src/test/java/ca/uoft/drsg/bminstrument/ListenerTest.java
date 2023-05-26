@@ -18,8 +18,10 @@ public class ListenerTest {
     String[] cmd = {"foo"};
     Listener t1 = new Listener(8089);    
     PseudoClient c1 = new PseudoClient("localhost", 8089, cmd);
-    // this will call run() method  
     t1.start();
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e) {}
     c1.start();
     try {
       Thread.sleep(1000);
@@ -37,9 +39,13 @@ public class ListenerTest {
   @Test
   public void testSendRequest() {
     String[] cmd = {"hello", "bye"};
-    Listener t1 = new Listener(8089);
-    PseudoClient c1 = new PseudoClient("localhost", 8089, cmd);
+    Listener t1 = new Listener(8088);
+    PseudoClient c1 = new PseudoClient("localhost", 8088, cmd);
+
     t1.start();
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e) {}
     c1.start();
     try {
       Thread.sleep(1000);

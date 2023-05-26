@@ -1,12 +1,17 @@
 package ca.uoft.drsg.bminstrument;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 // Singleton Pattern
 public class RuleBook {
+    private static final Logger LOG = LogManager.getLogger(RuleBook.class);
     private static RuleBook instance = new RuleBook();
-    
+
     private List<Rule> rules;
 
     private RuleBook(){
@@ -19,9 +24,11 @@ public class RuleBook {
 
     public int add(Rule r) {
         // assume all rules have unique ID
+        LOG.info("adding rule {} to rulebook", r);
         rules.add(r);
         /* register it with the transformer */
         r.register();
+
         return r.getId();
     }
     public boolean removeById(int id) {

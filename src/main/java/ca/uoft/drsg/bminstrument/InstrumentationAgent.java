@@ -13,6 +13,10 @@ public class InstrumentationAgent {
                              Instrumentation instrumentation) {
         LOG.info("premain running...");
         InstrumentationAgent.instrumentation = instrumentation;
+        if (argument != null) {
+            Protocol p = new Protocol();
+            p.process("add " + argument);
+        }
         Listener listener = new Listener(8089);
         listener.start();
         // Rule CHANGME = new Rule("bar", "foo", 0, "baz");
@@ -22,6 +26,7 @@ public class InstrumentationAgent {
 
     public static void agentmain(String argument,
                                  Instrumentation instrumentation) {
+        LOG.info("agent main running (will attach to a program)");
         premain(argument, instrumentation);
     }
 
@@ -37,7 +42,7 @@ public class InstrumentationAgent {
     //         transform(targetCls, targetClassLoader, instrumentation);
     //         return;
     //     } catch (Exception ex) {
-    //         LOGGER.error("Class [{}] not found with Class.forName");
+    //         LOG.infoGER.error("Class [{}] not found with Class.forName");
     //     }
     //     // otherwise iterate all loaded classes and find what we want
     //     for(Class<?> clazz: instrumentation.getAllLoadedClasses()) {

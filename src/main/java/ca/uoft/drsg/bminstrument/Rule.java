@@ -2,7 +2,6 @@ package ca.uoft.drsg.bminstrument;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 public class Rule {
     private static final Logger LOG = LogManager.getLogger(Rule.class);
     private static int nextID = 0;
@@ -13,6 +12,7 @@ public class Rule {
     private String[] parameterType;
     private int lineNumber;
     private String variableName;
+    private Transformer transformer;
 
     Rule(String className, String methodName, int lineNumber, String variableName) {
         id = nextID;
@@ -23,6 +23,7 @@ public class Rule {
         this.variableName = variableName;
         // TODO: leave the parameter to null
         this.parameterType = null;
+        this.transformer = null;
     }
 
     public int getId() {
@@ -43,17 +44,22 @@ public class Rule {
     public String getVariableName() {
         return variableName;
     }
-    public boolean register() {
+    public void register() {
         if (InstrumentationAgent.instrumentation == null) {
-            LOG.info("Error: this is fine during unit testing");
-            return false;
+            LOG.error("Error: Rule {} instrumentation is NULL", this);
+            return;
         }
-        InstrumentationAgent.instrumentation.addTransformer(new Transformer(this));
-        return true;
+        transformer = new Transformer(this);
+        InstrumentationAgent.instrumentation.addTransformer(transformer);
+        return;
     }
 
     public boolean unregister() {
-        return false;
+        if (transformer == null) {
+            LOG.error("Error: Rule {} was never registered", this);
+            return false;
+        }
+        return InstrumentationAgent.instrumentation.removeTransformer(transformer);
     }
     @Override
     public String toString() {
