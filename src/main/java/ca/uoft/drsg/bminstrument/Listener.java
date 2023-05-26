@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader; 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /* thread that listens to the static analysis tool analysis result 
  * format: Add instrumentation plan (.properties file)
  * returns ruleID if successful
@@ -17,6 +20,7 @@ import java.io.InputStreamReader;
  */
 
 public class Listener extends Thread {
+    private static final Logger LOG = LogManager.getLogger(Listener.class);
     private int portNumber;
     public ServerSocket serverSocket;
 
@@ -29,7 +33,7 @@ public class Listener extends Thread {
     }
     @Override
     public void run() {
-        System.out.println("Starting listener thread");
+        LOG.info("Starting listener thread");
 
         try {
             serverSocket = new ServerSocket(portNumber);
@@ -43,7 +47,7 @@ public class Listener extends Thread {
             try {
                 // accept a connection
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Accepted a connection " + clientSocket);
+                LOG.info("Accepted a connection " + clientSocket);
 
                 PrintWriter out =
                 new PrintWriter(clientSocket.getOutputStream(), true);
@@ -53,11 +57,11 @@ public class Listener extends Thread {
                 String userInput = null;
 
                 while ((userInput = in.readLine()) != null) {
-                    System.out.println("server received " + userInput);
+                    LOG.info("server received " + userInput);
                     out.println("OK");
                 }
 
-                System.out.println("Done reading");
+                LOG.info("Done reading");
                 clientSocket.close();
                 
             } catch (Exception e) {
@@ -67,7 +71,7 @@ public class Listener extends Thread {
         }
 
         try {
-            System.out.println("server socket closed");
+            LOG.info("server socket closed");
 
             serverSocket.close();
         } catch (Exception e) {

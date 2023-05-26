@@ -2,12 +2,16 @@ package ca.uoft.drsg.bminstrument;
 
 import java.lang.instrument.Instrumentation;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class InstrumentationAgent {
+    private static final Logger LOG = LogManager.getLogger(InstrumentationAgent.class);
+
     public static Instrumentation instrumentation;
     public static void premain(String argument, 
                              Instrumentation instrumentation) {
-        System.out.println("premain running...");
+        LOG.info("premain running...");
         InstrumentationAgent.instrumentation = instrumentation;
         Listener listener = new Listener(8089);
         listener.start();

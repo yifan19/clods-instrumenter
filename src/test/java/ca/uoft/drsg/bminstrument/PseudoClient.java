@@ -1,19 +1,20 @@
 package ca.uoft.drsg.bminstrument;
 
-import java.net.Socket;
-
-import java.io.PrintWriter;
 import java.io.BufferedReader;
-import java.io.InputStreamReader; 
-
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PseudoClient extends Thread {
     private String hostname;
     private int portNumber;
     private String[] cmds;
-    
+    private static final Logger LOG = LogManager.getLogger(PseudoClient.class);
+
     /* to test the server's response */
     public ArrayList<String> results;
 
@@ -24,7 +25,7 @@ public class PseudoClient extends Thread {
         results = new ArrayList<>();
     }
     public void run() {
-        System.out.println("Starting pseudoclient thread");
+        LOG.info("Starting pseudoclient thread");
         Socket clientSocket = null;
 
         try {
@@ -33,10 +34,10 @@ public class PseudoClient extends Thread {
             BufferedReader in = new BufferedReader(
                 new InputStreamReader(clientSocket.getInputStream()));
             for (String cmd: cmds) {
-                System.out.println("client writing:" + cmd);
+                LOG.info("client writing:" + cmd);
                 out.println(cmd);
                 String response = in.readLine();
-                System.out.println("adding response:" + response);
+                LOG.info("adding response:" + response);
                 results.add(response);
             }
             clientSocket.close();

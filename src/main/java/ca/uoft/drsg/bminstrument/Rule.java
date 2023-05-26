@@ -1,8 +1,11 @@
 package ca.uoft.drsg.bminstrument;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Rule {
-    static int nextID = 0;
+    private static final Logger LOG = LogManager.getLogger(Rule.class);
+    private static int nextID = 0;
     
     private int id;
     private String className;
@@ -42,7 +45,7 @@ public class Rule {
     }
     public boolean register() {
         if (InstrumentationAgent.instrumentation == null) {
-            System.out.println("Error: this is fine during unit testing");
+            LOG.info("Error: this is fine during unit testing");
             return false;
         }
         InstrumentationAgent.instrumentation.addTransformer(new Transformer(this));
