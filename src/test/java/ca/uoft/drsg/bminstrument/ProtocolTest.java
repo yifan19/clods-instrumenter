@@ -54,5 +54,15 @@ public class ProtocolTest {
     Rule r = proto.process("add " + filename);
     assertEquals("org.test.foo#100:bar", r.toString());
   }
+  @Test
+  public void testDelete() {
+    Protocol proto = new Protocol();
+
+    Rule r = proto.process("add " + filename);
+    assertEquals("org.test.foo#100:bar", r.toString());
+    r = proto.process("delete 0");
+    assertEquals("[]", RuleBook.getInstance().toString());
+  }
+
 
 }

@@ -54,12 +54,43 @@ public class Rule {
         return;
     }
 
+    private Class<?> findClass() {
+        Class<?> targetCls;
+        try {
+            targetCls = Class.forName(className);
+            return targetCls;
+        } catch (Exception ex) {
+            LOG.error("Class [{}] not found with Class.forName", className);
+        }
+        // otherwise iterate all loaded classes and find what we want
+        for(Class<?> clazz: InstrumentationAgent.instrumentation.getAllLoadedClasses()) {
+            if(clazz.getName().equals(className)) {
+                targetCls = clazz;
+                return targetCls;
+            }
+        }
+        return null;
+    }
+    private void trigger_retransformation() {
+        Class<?> classObject = findClass();
+        LOG.info("Triggering retransformation for {}", className);
+
+        if (classObject != null) {
+            try {
+                InstrumentationAgent.instrumentation.retransformClasses(classObject);
+            } catch (Exception e) {
+                LOG.error("Cannot trigger retransformation for rule {}", this);
+            }
+        }
+    }
     public boolean unregister() {
         if (transformer == null) {
             LOG.error("Error: Rule {} was never registered", this);
             return false;
         }
-        return InstrumentationAgent.instrumentation.removeTransformer(transformer);
+            boolean res = InstrumentationAgent.instrumentation.removeTransformer(transformer);
+            trigger_retransformation();
+            return res;
     }
     @Override
     public String toString() {

@@ -47,8 +47,8 @@ public class PseudoClient extends Thread {
         }
     }
     public static void main(String[] args) {
-        String[] cmd = {"add " + args[0]};
-        PseudoClient pc = new PseudoClient("localhost", 8089, cmd);
+
+        PseudoClient pc = new PseudoClient("localhost", 8089, args);
         pc.run();
     }
 }

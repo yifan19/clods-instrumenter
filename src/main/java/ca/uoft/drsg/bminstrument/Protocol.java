@@ -5,9 +5,14 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Protocol {
-    String command;
-    String predicate;
+    private static final Logger LOG = LogManager.getLogger(Protocol.class);
+
+    private String command;
+    private String predicate;
     public Protocol() {
     }
     
@@ -22,6 +27,8 @@ public class Protocol {
         return true;
     }
     public Rule processAdd() {
+        LOG.info("adding rule " + predicate);
+
         try (InputStream input = new FileInputStream(predicate)) {
 
             Properties prop = new Properties();
@@ -56,6 +63,17 @@ public class Protocol {
         return null;
     }
 
+    public boolean processDelete() {
+        LOG.info("deleting rule " + predicate);
+        int id;
+        try {
+            id = Integer.parseInt(predicate);
+            return RuleBook.getInstance().removeById(id);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public Rule process(String op) {
         if (!parse(op)) {
@@ -67,11 +85,9 @@ public class Protocol {
 
         }
         else if (command.equals("delete")) {
-
-        } else {
+            processDelete();
+            return null;
         }
-
-
         return null;
     }
 }
