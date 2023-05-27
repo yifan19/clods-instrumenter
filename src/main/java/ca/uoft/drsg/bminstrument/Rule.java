@@ -50,7 +50,9 @@ public class Rule {
             return;
         }
         transformer = new Transformer(this);
-        InstrumentationAgent.instrumentation.addTransformer(transformer);
+        InstrumentationAgent.instrumentation.addTransformer(transformer, true);
+        trigger_retransformation();
+
         return;
     }
 
