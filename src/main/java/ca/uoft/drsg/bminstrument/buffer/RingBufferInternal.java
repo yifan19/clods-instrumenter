@@ -1,13 +1,11 @@
 package ca.uoft.drsg.bminstrument.buffer;
 
-import java.io.Externalizable;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class RingBufferInternal<E extends Externalizable> {
+public class RingBufferInternal<E extends DataPersistable> {
     private Object[] buf;
     private long sequence;
     private long lastElementFlushed; 
@@ -48,13 +46,12 @@ public class RingBufferInternal<E extends Externalizable> {
                 Path file = Paths.get(dir, id + '_' + Integer.toString(fileIndex));
                 try {
                     FileOutputStream fos = new FileOutputStream(file.toString());
-                    ObjectOutputStream oos = new ObjectOutputStream(fos);
                     long start = lastElementFlushed + 1;
                     long finish = sequence + 1;
                     long i;
                     for (i = start ; i < finish; i++) {
                         int bufIndex = (int) i & mask;
-                        oos.writeObject(buf[bufIndex]);
+                        get(i).persistData(fos);
                         if (bufIndex == mask) {
                             // the last element in the buffer, we will start a new file
                             lastElementFlushed = i;
@@ -68,7 +65,7 @@ public class RingBufferInternal<E extends Externalizable> {
                         lastElementFlushed = finish - 1;
                         break;
                     }
-                    oos.close();
+                    fos.close();
 
                 } catch (IOException e) {
                     System.err.println(e);

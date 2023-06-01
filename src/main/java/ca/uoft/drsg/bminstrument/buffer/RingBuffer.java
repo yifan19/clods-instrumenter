@@ -1,10 +1,9 @@
 package ca.uoft.drsg.bminstrument.buffer;
 
-import java.io.Externalizable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class RingBuffer<T extends Externalizable>
+public class RingBuffer<T extends DataPersistable>
 {
     private final ConcurrentLinkedQueue<RingBufferInternal<T>> headBuffer;
     // ConcurrentHashMap does partial locking only when updating

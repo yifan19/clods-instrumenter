@@ -1,18 +1,17 @@
 package ca.uoft.drsg.bminstrument.buffer;
 
-import java.io.Externalizable;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-
+import java.nio.ByteBuffer;
 // import java.util.concurrent.locks;
 
-public class LogEvent implements Externalizable
+public class LogEvent implements DataPersistable 
 {
     private long id;
     private long value;
 
-    public void set(long id, int value)
+    public void set(long id, long value)
     {
         this.value = value;
         this.id = id;
@@ -31,22 +30,19 @@ public class LogEvent implements Externalizable
 
     }
     @Override
-    public void writeExternal(ObjectOutput out)
-        throws IOException
+    public void persistData(FileOutputStream out) throws IOException
     {
-        
-    out.writeLong(id);
-    out.writeLong(value);
-
-    
-
+        ByteBuffer bf = ByteBuffer.allocate(16);
+        bf.putLong(id);
+        bf.putLong(value);
+        out.write(bf.array());
     }
-
-	@Override
-	public void readExternal(ObjectInput in) throws IOException,
-			ClassNotFoundException {
-		id=in.readLong();
-        value=in.readLong();
-
-	}
+    @Override
+    public void retrieveData(FileInputStream in) throws IOException
+    {
+        ByteBuffer bf = ByteBuffer.allocate(16);
+        in.read(bf.array());
+        id = bf.getLong();
+        value = bf.getLong();
+    }
 }
