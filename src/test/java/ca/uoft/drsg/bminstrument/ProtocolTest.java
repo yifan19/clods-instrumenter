@@ -2,7 +2,7 @@ package ca.uoft.drsg.bminstrument;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Properties;
 import java.io.OutputStream;
@@ -35,9 +35,14 @@ public class ProtocolTest {
       prop.store(output, "for testing purposes");
       System.out.println(prop);
   
-  } catch (IOException e) {
-      e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
   }
+
+  @BeforeEach
+  public void init() {
+    RuleBook.getInstance().clear();
   }
 
   @Test
@@ -51,16 +56,19 @@ public class ProtocolTest {
   public void testSimpleProperties() { 
     Protocol proto = new Protocol();
     
-    Rule r = proto.process("add " + filename);
-    assertEquals("org.test.foo#100:bar", r.toString());
+    String res = proto.process("add " + filename);
+    assertEquals("OK", res.substring(0, 2));
+    Integer.parseInt(res.substring(3));
+    assertEquals("[org.test.foo#100:bar]", RuleBook.getInstance().toString());
   }
   @Test
   public void testDelete() {
     Protocol proto = new Protocol();
-
-    Rule r = proto.process("add " + filename);
-    assertEquals("org.test.foo#100:bar", r.toString());
-    r = proto.process("delete 0");
+    String res = proto.process("add " + filename);
+    assertEquals("[org.test.foo#100:bar]", RuleBook.getInstance().toString());
+    int id = Integer.parseInt(res.substring(3));
+    String res2 = proto.process("delete " + Integer.toString(id));
+    assertEquals("OK", res2.substring(0, 2));
     assertEquals("[]", RuleBook.getInstance().toString());
   }
 

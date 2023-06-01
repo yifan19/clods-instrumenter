@@ -26,7 +26,7 @@ public class Protocol {
         predicate = tokenizer.nextToken();
         return true;
     }
-    public Rule processAdd() {
+    private Rule processAdd() {
         LOG.info("adding rule " + predicate);
 
         try (InputStream input = new FileInputStream(predicate)) {
@@ -63,32 +63,37 @@ public class Protocol {
         return null;
     }
 
-    public boolean processDelete() {
+    private String processDelete() {
         LOG.info("deleting rule " + predicate);
         int id;
+        boolean result = false;
         try {
             id = Integer.parseInt(predicate);
-            return RuleBook.getInstance().removeById(id);
+             result = RuleBook.getInstance().removeById(id);
+            
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return false;
+        return result ? "OK": "FAIL";
     }
 
-    public Rule process(String op) {
+    public String process(String op) {
         if (!parse(op)) {
-            return null;
+            return "FAIL: PARSE ERROR";
         }
         if (command.equals("add")) {
             Rule r = processAdd();
-            return r;
+            if (r == null) {
+                return "FAIL";
+            } else {
+                return "OK " + Integer.toString(r.getId());
+            }
 
         }
         else if (command.equals("delete")) {
-            processDelete();
-            return null;
+            return processDelete();
         }
-        return null;
+        return "FAIL: UNKNOWN";
     }
 }
 

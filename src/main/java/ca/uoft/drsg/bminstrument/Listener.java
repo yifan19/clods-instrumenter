@@ -59,8 +59,8 @@ public class Listener extends Thread {
                 while ((userInput = in.readLine()) != null) {
                     LOG.info("server received " + userInput);
                     Protocol p = new Protocol();
-                    p.process(userInput);
-                    out.println("OK");
+                    String myResponse = p.process(userInput);
+                    LOG.info(myResponse);
                 }
 
                 LOG.info("Done reading");

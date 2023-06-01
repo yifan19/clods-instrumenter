@@ -60,8 +60,8 @@ public class ListenerTest {
     
 
     assertEquals(2, c1.results.size());
-    assertEquals("OK", c1.results.get(0));
-    assertEquals("OK", c1.results.get(1));
+    assertEquals("FAIL", c1.results.get(0).substring(0, 4));
+    assertEquals("FAIL", c1.results.get(1).substring(0, 4));
 
 
   }
