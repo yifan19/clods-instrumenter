@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class RingBufferInternal<E extends DataPersistable> {
+    private static final Logger LOG = LogManager.getLogger(RingBufferInternal.class);
     private Object[] buf;
     private long sequence;
     private long lastElementFlushed; 
@@ -36,34 +40,44 @@ public class RingBufferInternal<E extends DataPersistable> {
         id = threadId;
         dir = dirPath;
         flush = flushToDisk;
+        fileIndex = -1;
     }
-    private void flushToDisk_normal() {
+    public void flushToDisk_normal() {
         // System.out.println(dir);
         // System.out.println(id + '_' + Integer.toString(fileIndex));
+        boolean done = false;
+        if (( (lastElementFlushed + 1) & mask) == 0) {
+            fileIndex++;
+        }
         if (flush) {
             
-            while (true) {
+            while (!done) {
+                LOG.info("flushToDisk: sequence = {},  lastElementFlushed = {}", sequence, lastElementFlushed);
                 Path file = Paths.get(dir, id + '_' + Integer.toString(fileIndex));
+                boolean haveWrittenDataInCycle = false;
                 try {
                     FileOutputStream fos = new FileOutputStream(file.toString());
                     long start = lastElementFlushed + 1;
                     long finish = sequence + 1;
                     long i;
                     for (i = start ; i < finish; i++) {
-                        int bufIndex = (int) i & mask;
-                        get(i).persistData(fos);
-                        if (bufIndex == mask) {
-                            // the last element in the buffer, we will start a new file
-                            lastElementFlushed = i;
+                        if ((i & mask) == 0 && haveWrittenDataInCycle == true){
+                            LOG.info("rotating to a new file");
+
+                            // we are writing slot #0 again
+                            // abort the write to a new file
+                            lastElementFlushed = i - 1;
                             fileIndex++;
                             break;
                         }
+                        haveWrittenDataInCycle = true;
+                        get(i).persistData(fos);
                     }
-                    
+      
                     // normal termination, we don't need to start a new file
                     if (i == finish) {
                         lastElementFlushed = finish - 1;
-                        break;
+                        done = true;
                     }
                     fos.close();
 
@@ -118,13 +132,15 @@ public class RingBufferInternal<E extends DataPersistable> {
     }
 
     public long next() {
+        // the current sequence is just about to overtake
+
+        if (sequence >= lastElementFlushed + size) {
+            flushToDisk_normal();
+        }
+
         sequence++;
         
-        // last element of the array
-        if ((sequence & mask) == mask) {
-            flushToDisk_normal();
-            fileIndex++;
-        }
+
         return sequence;
     }
     public void publish(long seq) {
