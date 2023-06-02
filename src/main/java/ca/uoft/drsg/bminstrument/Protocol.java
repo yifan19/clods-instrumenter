@@ -44,7 +44,8 @@ public class Protocol {
             if (className == null || methodName == null ||
                 lineNumber == null || variableName == null) {
                     return null;
-                }
+            }
+
             int lineNumber_int = 0;
             try {
                 lineNumber_int = Integer.parseInt(lineNumber);
@@ -53,6 +54,12 @@ public class Protocol {
             }
             
             Rule r = new Rule(className, methodName, lineNumber_int, variableName);
+            
+            if (prop.containsKey("parameterTypes")) {
+                String parameter_result = prop.getProperty("parameterTypes");
+                String[] params = parameter_result.split(",\\s*", 0);
+                r.setParameters(params);
+            }
             RuleBook.getInstance().add(r);
             return r;
 

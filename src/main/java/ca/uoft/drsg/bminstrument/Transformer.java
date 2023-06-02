@@ -11,16 +11,57 @@ import org.apache.logging.log4j.Logger;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
+import javassist.NotFoundException;
 
 public class Transformer implements ClassFileTransformer {
     private static final Logger LOG = LogManager.getLogger(Transformer.class);
 
 	private Rule rule;
 
-	Transformer(Rule rule) {
+	public Transformer(Rule rule) {
 		this.rule = rule;
 
 	}
+
+	public CtMethod findMethod(CtClass clazz) throws NotFoundException {
+		CtMethod[] methods = clazz.getDeclaredMethods();
+		CtMethod ret = null;
+		for (CtMethod method : methods) {
+			LOG.debug("method seen {}", method.getName());
+			if (rule.getMethodName().equals(method.getName())) {
+				LOG.info("found potential method for transformation {}", rule.getMethodName());
+                if (areParamsEqual(method)) {
+                    return method;
+                }
+            }
+        }
+        return null;
+	}
+
+    public boolean areParamsEqual(CtMethod method) throws NotFoundException{
+        String [] ruleParams = rule.getParameters();
+        CtClass[] targetMethodParams = method.getParameterTypes();
+
+        if (ruleParams == null) {
+            return true;
+        }
+        LOG.info("target={}, rulebook={}", targetMethodParams.length, ruleParams.length);
+
+        if (targetMethodParams.length != ruleParams.length) {
+
+            return false;
+        }
+        for (int i = 0; i < targetMethodParams.length; i++) {
+            LOG.info("ruleParam[{}]={}, targetParam[{}]={}", i, ruleParams[i], i, targetMethodParams[i].getName());
+
+            if (!ruleParams[i].equals(targetMethodParams[i].getName())) {
+                return false;
+            }
+        }
+        // if code gets here
+        return true;
+    }
+
     @Override
 	public byte[] transform(ClassLoader loader, String className, Class classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -32,26 +73,27 @@ public class Transformer implements ClassFileTransformer {
 
 		//Add instrumentation to Sample class alone
 		if (className.equals(classNameSlash)) {
-			LOG.info("found class: start transforming {}", className);
+		LOG.info("found class: start transforming {}", className);
 
 			try {
 				ClassPool classPool = ClassPool.getDefault();
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
-				
-				// CtMethod[] methods = ctClass.getDeclaredMethods();
-				// for (CtMethod method : methods) {
-				//     LOG.info(method.getName());
-				//     LOG.info(method.getLongName());
-				// }
+                CtMethod instrumentedMethod = findMethod(ctClass);
+                if (findMethod(ctClass) == null) {
+                    LOG.info("Could not find the appropriate method");
+                } else {
+                    LOG.info("Transforming method {}", instrumentedMethod.getLongName());
+                    // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
+                    instrumentedMethod.insertAt(rule.getlineNumber(), 
+                        "System.out.println(" + rule.getVariableName() + ");");
+                }
 
-				CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
-				instrumentedMethod.insertAt(rule.getlineNumber(), 
-					"System.out.println(" + rule.getVariableName() + ");");
-                			
+                // instrumentedMethod.insertAt(rule.getlineNumber(), 
+				// 	rule.getVariableName() + "++;");
 				byteCode = ctClass.toBytecode();
 				ctClass.detach();
 			} catch (Throwable ex) {
-				LOG.info("Exception: " + ex);
+				LOG.info("Exception caught: " + ex);
 				ex.printStackTrace();
 			}
 		}

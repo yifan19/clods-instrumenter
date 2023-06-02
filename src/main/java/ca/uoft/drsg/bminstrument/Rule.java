@@ -9,7 +9,7 @@ public class Rule {
     private int id;
     private String className;
     private String methodName;
-    private String[] parameterType;
+    private String[] parameterTypes;
     private int lineNumber;
     private String variableName;
     private Transformer transformer;
@@ -22,10 +22,16 @@ public class Rule {
         this.lineNumber = lineNumber;
         this.variableName = variableName;
         // TODO: leave the parameter to null
-        this.parameterType = null;
+        this.parameterTypes = null;
         this.transformer = null;
     }
 
+    public void setParameters(String[] parameterTypes) {
+        this.parameterTypes = parameterTypes;
+    }
+    public String[] getParameters() {
+        return parameterTypes;
+    }
     public int getId() {
         return id;
     }
