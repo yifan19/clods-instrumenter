@@ -60,7 +60,7 @@ public class Listener extends Thread {
                     LOG.info("server received " + userInput);
                     Protocol p = new Protocol();
                     String myResponse = p.process(userInput);
-                    LOG.info(myResponse);
+                    out.println(myResponse);
                 }
 
                 LOG.info("Done reading");
