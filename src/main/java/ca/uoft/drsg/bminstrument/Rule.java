@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class Rule {
     private static final Logger LOG = LogManager.getLogger(Rule.class);
-    private static int nextID = 0;
+    // private static int nextID = 0;
     
     private int id;
     private String className;
@@ -14,9 +14,8 @@ public class Rule {
     private String variableName;
     private Transformer transformer;
 
-    Rule(String className, String methodName, int lineNumber, String variableName) {
-        id = nextID;
-        nextID++;
+    Rule(int id, String className, String methodName, int lineNumber, String variableName) {
+        this.id = id;
         this.className = className;
         this.methodName = methodName;
         this.lineNumber = lineNumber;

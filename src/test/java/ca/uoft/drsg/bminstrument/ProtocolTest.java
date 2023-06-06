@@ -17,6 +17,7 @@ import java.io.IOException;
 public class ProtocolTest {
 
   static String filename;
+  static String filename2;
 
   @BeforeAll
   static public void setup() {
@@ -26,6 +27,7 @@ public class ProtocolTest {
       Properties prop = new Properties();
   
       // set the properties value
+      prop.setProperty("ID", "10");
       prop.setProperty("className", "org.test");
       prop.setProperty("methodName", "foo");
       // prop.setProperty("parameterType");
@@ -38,6 +40,27 @@ public class ProtocolTest {
     } catch (IOException e) {
         e.printStackTrace();
     }
+
+    filename2 = "/tmp/data2.properties";
+    try (OutputStream output = new FileOutputStream(filename2)) {
+
+      Properties prop = new Properties();
+  
+      // set the properties value
+      prop.setProperty("ID", "99");
+      prop.setProperty("className", "org.test");
+      prop.setProperty("methodName", "foo");
+      // prop.setProperty("parameterType");
+      prop.setProperty("lineNumber", "entry");
+      prop.setProperty("variableName", "bar");
+  
+      prop.store(output, "for testing entry");
+      System.out.println(prop);
+  
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
   }
 
   @BeforeEach
@@ -72,5 +95,18 @@ public class ProtocolTest {
     assertEquals("[]", RuleBook.getInstance().toString());
   }
 
+  @Test
+  public void testAddEntry() {
+    Protocol proto = new Protocol();
+    String res = proto.process("add " + filename2);
+    // -1 also means entry
+    assertEquals("[org.test.foo#-1:bar]", RuleBook.getInstance().toString());
+    int id = Integer.parseInt(res.substring(3));
+    Rule r = RuleBook.getInstance().searchById(id);
+    assertEquals(99, r.getId());
+    String res2 = proto.process("delete " + Integer.toString(id));
+    assertEquals("OK", res2.substring(0, 2));
+    assertEquals("[]", RuleBook.getInstance().toString());
+  }
 
 }

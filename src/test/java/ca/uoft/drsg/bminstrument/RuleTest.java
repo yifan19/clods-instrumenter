@@ -21,7 +21,7 @@ public class RuleTest {
   @Test
   public void testRuleCreation() {  
     
-    Rule r = new Rule("hello", "bye", 10, "foo");
+    Rule r = new Rule(0, "hello", "bye", 10, "foo");
     rb.add(r);
     assertEquals(1, rb.size()); 
     
@@ -40,8 +40,8 @@ public class RuleTest {
 
   @Test  
   public void testRuleDeletion() {  
-    Rule r1 = new Rule("hello", "bye", 10, "foo");
-    Rule r2 = new Rule("hello", "bye2", 11, "foo2");
+    Rule r1 = new Rule(0, "hello", "bye", 10, "foo");
+    Rule r2 = new Rule(1, "hello", "bye2", 11, "foo2");
     rb.add(r1);
     rb.add(r2);
     assertEquals(2, rb.size());

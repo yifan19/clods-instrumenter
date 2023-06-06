@@ -35,25 +35,34 @@ public class Protocol {
             prop.load(input);
 
             // get the property value and print it out
+            String ID = prop.getProperty("ID");
             String className = prop.getProperty("className");
             String methodName = prop.getProperty("methodName");
             // System.out.println(prop.getProperty("parameterType"));
             String lineNumber = prop.getProperty("lineNumber");
             String variableName = prop.getProperty("variableName");
             
-            if (className == null || methodName == null ||
+            if (ID == null ||
+                className == null || methodName == null ||
                 lineNumber == null || variableName == null) {
                     return null;
             }
-
-            int lineNumber_int = 0;
+            int lineNumber_int = -1;
+            if (!lineNumber.equalsIgnoreCase("entry")) {
+                try {
+                    lineNumber_int = Integer.parseInt(lineNumber);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+            int ID_int = 0;
             try {
-                lineNumber_int = Integer.parseInt(lineNumber);
+                ID_int = Integer.parseInt(ID);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-            
-            Rule r = new Rule(className, methodName, lineNumber_int, variableName);
+
+            Rule r = new Rule(ID_int, className, methodName, lineNumber_int, variableName);
             
             if (prop.containsKey("parameterTypes")) {
                 String parameter_result = prop.getProperty("parameterTypes");

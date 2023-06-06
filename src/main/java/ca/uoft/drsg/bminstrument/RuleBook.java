@@ -31,7 +31,7 @@ public class RuleBook {
 
         return r.getId();
     }
-    public boolean removeById(int id) {
+    private int indexById(int id) {
         int index = -1;
         int size = rules.size();
         for (int i = 0; i < size; i++) {
@@ -40,6 +40,19 @@ public class RuleBook {
                 break;
             }
         }
+        /* found the index */
+        return index;
+    }
+    public Rule searchById(int id) {
+        int index = indexById(id);
+        if (index == -1) {
+            return null;
+        }
+        return rules.get(index);
+
+    }
+    public boolean removeById(int id) {
+        int index = indexById(id);
         /* found the index */
         if (index != -1) {
             Rule tgt_rule = rules.get(index);
