@@ -42,7 +42,7 @@ public class RingBufferInternal<E extends DataPersistable> {
         flush = flushToDisk;
         fileIndex = -1;
     }
-    public void flushToDisk_normal() {
+    public long flushToDisk_normal() {
         // System.out.println(dir);
         // System.out.println(id + '_' + Integer.toString(fileIndex));
         boolean done = false;
@@ -87,6 +87,7 @@ public class RingBufferInternal<E extends DataPersistable> {
 
             }
         }
+        return lastElementFlushed;
     }
 
     // private void flushToDisk_mmap() {

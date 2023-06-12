@@ -85,7 +85,10 @@ public class Transformer implements ClassFileTransformer {
                     LOG.info("Transforming method {}", instrumentedMethod.getLongName());
                     // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
                     String insertedLine =
-                        "System.out.println(\"[BM]\"" + rule.getVariableName() + ");";
+                        "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
+                        rule.getId() + ", (long)" +
+                        rule.getVariableName() + ");";
+                    LOG.info(insertedLine);
                     if (rule.getlineNumber() == -1) {
                         instrumentedMethod.insertBefore(insertedLine); 
                     } else {

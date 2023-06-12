@@ -11,19 +11,22 @@ public class RingBuffer<T extends DataPersistable>
     private EventFactory<T> eventFactory;
     final int ringBufferSize;
     final boolean flushToDisk;
+    final String dirPath;
     // final ThreadFactory threadFactory;
     // final ProducerType producerType;
     // final WaitStrategy waitStrategy;
 
     public RingBuffer(
-        final EventFactory<T> eventFactory,
         final int ringBufferSize,
+        final String dirPath,
+        final EventFactory<T> eventFactory,
         final boolean flushToDisk
     )
     {
         this.eventFactory = eventFactory;
         this.ringBufferSize = ringBufferSize;
         this.flushToDisk = flushToDisk;
+        this.dirPath = dirPath;
         // this.threadFactory = threadFactory;
         // this.producerType = producerType;
         // this.waitStrategy = waitStrategy;
@@ -39,10 +42,17 @@ public class RingBuffer<T extends DataPersistable>
         return null;
     }
     
-    /* returns the files of all the logs we have collected*/ 
+    /* returns the last sequence flushed */
     /* will force flush everytime */
-    public String collectData() {
-        return null;
+    public long[] collectData() {
+        long[] result = new long[headBuffer.size()];
+        int i = 0;
+        for (RingBufferInternal<T> r: headBuffer) {
+            long last_index = r.flushToDisk_normal();
+            result[i] = last_index;
+            i++;
+        }
+        return result;
 
     }
 
@@ -56,7 +66,7 @@ public class RingBuffer<T extends DataPersistable>
             ringBuffer = new RingBufferInternal<T>(
                 ringBufferSize,
                 Thread.currentThread().getName(),
-                "/data/tmp",
+                dirPath,
                 eventFactory,
                 flushToDisk
                 );

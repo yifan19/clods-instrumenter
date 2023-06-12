@@ -57,6 +57,7 @@ public class RingBufferInternalTest {
 
   }
 
+ 
   @Test
   void testAddData() {
 
@@ -65,25 +66,25 @@ public class RingBufferInternalTest {
       long seq = rbi.next();
       rbi.get(seq).set(seq, i);
     }
-    assertFalse(fileExists("main_0"));
-    assertFalse(fileExists("main_1"));
+    assertFalse(FileUtil.fileExists("main_0", dirPath));
+    assertFalse(FileUtil.fileExists("main_1", dirPath));
 
     // + 1 item now, should cause the first file to save
     for (int i = 0; i < 1; i++) {
       long seq = rbi.next();
       rbi.get(seq).set(seq, i);
     }
-    assertTrue(fileExists("main_0"));
-    assertFalse(fileExists("main_1"));
+    assertTrue(FileUtil.fileExists("main_0", dirPath));
+    assertFalse(FileUtil.fileExists("main_1", dirPath));
 
     // + 64 item now, should cause the first 2 to save
     for (int i = 0; i < 64; i++) {
       long seq = rbi.next();
       rbi.get(seq).set(seq, i);
     }
-    assertTrue(fileExists("main_0"));
-    assertTrue(fileExists("main_1"));
-    assertFalse(fileExists("main_2"));
+    assertTrue(FileUtil.fileExists("main_0", dirPath));
+    assertTrue(FileUtil.fileExists("main_1", dirPath));
+    assertFalse(FileUtil.fileExists("main_2", dirPath));
 
   }
   
