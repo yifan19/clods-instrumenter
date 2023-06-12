@@ -5,7 +5,8 @@ package ca.uoft.drsg.bminstrument.buffer;
  */
 public class LogEventFactory extends EventFactory<LogEvent> {
     
-    LogEvent newInstance() {
+    @Override
+	LogEvent newInstance() {
         return new LogEvent();
     }
 }
