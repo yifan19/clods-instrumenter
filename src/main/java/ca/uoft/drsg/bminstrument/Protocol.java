@@ -93,6 +93,17 @@ public class Protocol {
         return result ? "OK": "FAIL";
     }
 
+    private String processCollect() {
+        LOG.info(" " + predicate);
+        if (InstrumentationAgent.buffer != null) {
+            long result[] = InstrumentationAgent.buffer.collectData();
+            LOG.info(result);
+            return "OK" + result;
+        }
+        return "FAIL";
+
+    }
+
     public String process(String op) {
         if (!parse(op)) {
             return "FAIL: PARSE ERROR";
@@ -109,6 +120,10 @@ public class Protocol {
         else if (command.equals("delete")) {
             return processDelete();
         }
+        else if (command.equals("collect")) {
+            return processCollect();
+        }
+
         return "FAIL: UNKNOWN";
     }
 }
