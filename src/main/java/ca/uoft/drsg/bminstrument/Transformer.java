@@ -103,7 +103,7 @@ public class Transformer implements ClassFileTransformer {
                 LOG.info(insertedLine);
                 BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule);
                 // log_bci(instrumentedMethod, ctClass);
-                bcm.log_var();
+                bcm.logVar();
                 // if (rule.getlineNumber() == -1) {
                     // instrumentedMethod.insertBefore(insertedLine); 
                 // } else {

@@ -29,8 +29,29 @@ public class BytecodeManip {
         this.clazz = clazz;
         this.rule = rule;
     }
+    // private int findStartIndex(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
+    //     CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+    //     LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
+    //         codeAttribute.getAttribute(LocalVariableAttribute.tag);
 
-    public void log_var() {
+    //     CodeIterator ci = codeAttribute.iterator();
+    //     ci.move(pc_start.index);
+    //     int index = 0;
+    //         while (ci.hasNext()) {
+    //             try {
+    //                 index = ci.next();
+    //             } catch (Exception e) {
+    //                 LOG.info(e.toString());
+    //             }
+    //             if (index >= pc_end.index) {
+    //                 break;
+    //             }
+    //             int op = ci.byteAt(index);
+    //             LOG.info("bci={}, {}",index, Mnemonic.OPCODE[op]);
+    //         }
+    //     return index;
+    // }
+    public void logVar() {
 
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
         LineNumberAttribute lineNumberAttribute = (LineNumberAttribute) codeAttribute.getAttribute(LineNumberAttribute.tag);
@@ -51,6 +72,8 @@ public class BytecodeManip {
         */
         pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
         pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
+
+        int start_index = pc_start.index;
 
         CodeIterator it = codeAttribute.iterator();
 
@@ -79,8 +102,8 @@ public class BytecodeManip {
                 codeAttribute.setMaxStack(stack);
             }
 
-            int index = it.insertAt(pc_start.index, b.get());
-            LOG.info("inserted at bc {}", pc_start.index);
+            int index = it.insertAt(start_index, b.get());
+            LOG.info("inserted at bc {}, return {}", start_index, index);
             // iterator.insert(b.getExceptionTable(), index);
             method.getMethodInfo().rebuildStackMapIf6(clazz.getClassPool(), clazz.getClassFile2());
 
