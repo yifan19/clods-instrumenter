@@ -1,6 +1,7 @@
 package ca.uoft.drsg.bminstrument;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -12,7 +13,16 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.NotFoundException;
-
+import javassist.bytecode.BadBytecode;
+import javassist.bytecode.Bytecode;
+import javassist.bytecode.CodeAttribute;
+import javassist.bytecode.CodeIterator;
+import javassist.bytecode.ConstPool;
+import javassist.bytecode.LineNumberAttribute;
+import javassist.bytecode.LocalVariableAttribute;
+import javassist.bytecode.Mnemonic;
+import javassist.compiler.Javac;
+import javassist.Modifier;
 public class Transformer implements ClassFileTransformer {
     private static final Logger LOG = LogManager.getLogger(Transformer.class);
 
@@ -62,6 +72,7 @@ public class Transformer implements ClassFileTransformer {
         return true;
     }
 
+    
     @Override
 	public byte[] transform(ClassLoader loader, String className, Class classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -81,25 +92,33 @@ public class Transformer implements ClassFileTransformer {
                 CtMethod instrumentedMethod = findMethod(ctClass);
                 if (findMethod(ctClass) == null) {
                     LOG.info("Could not find the appropriate method");
-                } else {
-                    LOG.info("Transforming method {}", instrumentedMethod.getLongName());
-                    // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
-                    String insertedLine =
-                        "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
-                        rule.getId() + ", (long)" +
-                        rule.getVariableName() + ");";
-                    LOG.info(insertedLine);
-                    if (rule.getlineNumber() == -1) {
-                        instrumentedMethod.insertBefore(insertedLine); 
-                    } else {
-                        instrumentedMethod.insertAt(rule.getlineNumber(), 
-                            insertedLine);
-                    }
+                    return null;
                 }
+                LOG.info("Transforming method {}", instrumentedMethod.getLongName());
+                // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
+                String insertedLine =
+                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
+                    rule.getId() + ", (long)" +
+                    rule.getVariableName() + ");";
+                LOG.info(insertedLine);
+                BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule);
+                // log_bci(instrumentedMethod, ctClass);
+                bcm.log_var();
+                // if (rule.getlineNumber() == -1) {
+                    // instrumentedMethod.insertBefore(insertedLine); 
+                // } else {
+                //     instrumentedMethod.insertAt(rule.getlineNumber(), 
+                //         insertedLine);
+                // }
+                // log_bci(instrumentedMethod, ctClass);
 
                 // instrumentedMethod.insertAt(rule.getlineNumber(), 
 				// 	rule.getVariableName() + "++;");
 				byteCode = ctClass.toBytecode();
+                
+                try (FileOutputStream fos = new FileOutputStream("/data/new" + rule.getId() + ".class")) {
+                    fos.write(byteCode);
+                }
 				ctClass.detach();
 			} catch (Throwable ex) {
 				LOG.info("Exception caught: " + ex);
