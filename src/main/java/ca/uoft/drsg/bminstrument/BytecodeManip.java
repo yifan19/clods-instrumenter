@@ -13,6 +13,7 @@ import javassist.bytecode.ConstPool;
 import javassist.bytecode.LineNumberAttribute;
 import javassist.bytecode.LocalVariableAttribute;
 import javassist.bytecode.Mnemonic;
+import javassist.bytecode.Opcode;
 import javassist.compiler.Javac;
 import javassist.Modifier;
 
@@ -29,28 +30,169 @@ public class BytecodeManip {
         this.clazz = clazz;
         this.rule = rule;
     }
-    // private int findStartIndex(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
-    //     CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
-    //     LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
-    //         codeAttribute.getAttribute(LocalVariableAttribute.tag);
+    private int decodeLoadParam(int op, CodeIterator ci, int index) {
+        int variableIndex;
 
-    //     CodeIterator ci = codeAttribute.iterator();
-    //     ci.move(pc_start.index);
-    //     int index = 0;
-    //         while (ci.hasNext()) {
-    //             try {
-    //                 index = ci.next();
-    //             } catch (Exception e) {
-    //                 LOG.info(e.toString());
-    //             }
-    //             if (index >= pc_end.index) {
-    //                 break;
-    //             }
-    //             int op = ci.byteAt(index);
-    //             LOG.info("bci={}, {}",index, Mnemonic.OPCODE[op]);
-    //         }
-    //     return index;
-    // }
+        switch (op) {
+            case Opcode.ALOAD:
+            case Opcode.DLOAD:
+            case Opcode.FLOAD:
+            case Opcode.ILOAD:
+            case Opcode.LLOAD:
+            variableIndex = ci.signedByteAt(index + 1);
+            break;
+            case Opcode.ALOAD_0:
+            case Opcode.DLOAD_0:
+            case Opcode.FLOAD_0:
+            case Opcode.ILOAD_0:
+            case Opcode.LLOAD_0:
+            variableIndex = 0;
+            break;
+            case Opcode.ALOAD_1:
+            case Opcode.DLOAD_1:
+            case Opcode.FLOAD_1:
+            case Opcode.ILOAD_1:
+            case Opcode.LLOAD_1:
+            variableIndex = 1;
+            break;
+            case Opcode.ALOAD_2:
+            case Opcode.DLOAD_2:
+            case Opcode.FLOAD_2:
+            case Opcode.ILOAD_2:
+            case Opcode.LLOAD_2:
+            variableIndex = 2;
+            break;
+            case Opcode.ALOAD_3:
+            case Opcode.DLOAD_3:
+            case Opcode.FLOAD_3:
+            case Opcode.ILOAD_3:
+            case Opcode.LLOAD_3:
+            variableIndex = 3;
+            break;
+            default:
+            variableIndex = -1;
+        }
+        
+        return variableIndex;
+    }
+
+    private int decodeStoreParam(int op, CodeIterator ci, int index) {
+        int variableIndex;
+
+        switch (op) {
+            case Opcode.ASTORE:
+            case Opcode.DSTORE:
+            case Opcode.FSTORE:
+            case Opcode.ISTORE:
+            case Opcode.LSTORE:
+            case Opcode.IINC:
+            variableIndex = ci.signedByteAt(index + 1);
+            break;
+            case Opcode.ASTORE_0:
+            case Opcode.DSTORE_0:
+            case Opcode.FSTORE_0:
+            case Opcode.ISTORE_0:
+            case Opcode.LSTORE_0:
+            variableIndex = 0;
+            break;
+            case Opcode.ASTORE_1:
+            case Opcode.DSTORE_1:
+            case Opcode.FSTORE_1:
+            case Opcode.ISTORE_1:
+            case Opcode.LSTORE_1:
+            variableIndex = 1;
+            break;
+            case Opcode.ASTORE_2:
+            case Opcode.DSTORE_2:
+            case Opcode.FSTORE_2:
+            case Opcode.ISTORE_2:
+            case Opcode.LSTORE_2:
+            variableIndex = 2;
+            break;
+            case Opcode.ASTORE_3:
+            case Opcode.DSTORE_3:
+            case Opcode.FSTORE_3:
+            case Opcode.ISTORE_3:
+            case Opcode.LSTORE_3:
+            variableIndex = 3;
+            break;
+            default:
+            variableIndex = -1;
+        }
+        
+        return variableIndex;
+    }
+
+    private int findVariableIndex() {
+        CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+        LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
+
+        int n = localVariableAttribute.tableLength();
+        int localVariableIndex = -1;
+        int i;
+        for (i = 0; i < n; ++i) {
+            int index = localVariableAttribute.index(i);
+            LOG.info("{} {} {}",localVariableAttribute.descriptor(i), localVariableAttribute.variableName(i),
+                      index);
+            String varName = localVariableAttribute.variableName(i);
+            if (varName.equals(rule.getVariableName())) {
+                localVariableIndex = localVariableAttribute.index(i);
+                break;
+            }
+        }
+        return localVariableIndex;
+    }
+    private int findInjectionIndex(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
+        CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+        LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
+            codeAttribute.getAttribute(LocalVariableAttribute.tag);
+    
+        int varIndex = findVariableIndex();
+        LOG.info("variable Index = {}",varIndex);
+
+        CodeIterator ci = codeAttribute.iterator();
+        
+        ci.move(pc_start.index);
+        int index = 0;
+            while (ci.hasNext()) {
+                try {
+                    index = ci.next();
+                } catch (Exception e) {
+                    LOG.info(e.toString());
+                }
+                if (index >= pc_end.index) {
+                    LOG.info("arrived at pc_end and did not find");
+                    break;
+                }
+                int op = ci.byteAt(index);
+                LOG.info("bci={}, {}",index, Mnemonic.OPCODE[op]);
+                
+                // if (rule.getStrategy().equals("after")) {
+
+
+                // }
+
+                if (rule.getStrategy().equals("before")) {
+                    int res = decodeLoadParam(op, ci, index);
+                    LOG.info("decodeLoadParam = {}",res);
+                    if (res == varIndex) {
+                        break;
+                    }
+                } else {
+                    int res = decodeStoreParam(op, ci, index);
+                    if (res == varIndex) {
+                        try {
+                            index = ci.next();
+                        } catch (Exception e) {
+                            LOG.info(e.toString());
+                        }
+                        break;
+                    }
+                }
+
+            }
+        return index;
+    }
     public void logVar() {
 
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
@@ -73,7 +215,7 @@ public class BytecodeManip {
         pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
         pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
 
-        int start_index = pc_start.index;
+        int start_index = findInjectionIndex(pc_start, pc_end);
 
         CodeIterator it = codeAttribute.iterator();
 

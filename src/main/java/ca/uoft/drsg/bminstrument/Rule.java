@@ -13,6 +13,8 @@ public class Rule {
     private int lineNumber;
     private String variableName;
     private Transformer transformer;
+    private String strategy;
+
 
     Rule(int id, String className, String methodName, int lineNumber, String variableName) {
         this.id = id;
@@ -20,13 +22,19 @@ public class Rule {
         this.methodName = methodName;
         this.lineNumber = lineNumber;
         this.variableName = variableName;
-        // TODO: leave the parameter to null
         this.parameterTypes = null;
         this.transformer = null;
+        this.strategy = "before";
     }
 
     public void setParameters(String[] parameterTypes) {
         this.parameterTypes = parameterTypes;
+    }
+    public void setStrategy(String strategy) {
+        this.strategy = strategy;
+    }    
+    public String getStrategy() {
+        return strategy;
     }
     public String[] getParameters() {
         return parameterTypes;
@@ -49,6 +57,7 @@ public class Rule {
     public String getVariableName() {
         return variableName;
     }
+    
     public void register() {
         if (InstrumentationAgent.instrumentation == null) {
             LOG.error("Error: Rule {} instrumentation is NULL", this);

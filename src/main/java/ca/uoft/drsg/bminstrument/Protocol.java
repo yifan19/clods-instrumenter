@@ -69,6 +69,13 @@ public class Protocol {
                 String[] params = parameter_result.split(",\\s*", 0);
                 r.setParameters(params);
             }
+            if (prop.containsKey("strategy")) {
+                // "after" specifies we wish to print after a store
+                // (default) "before" specifies we wish to print before a load 
+                String strategyResult = prop.getProperty("strategy");
+                r.setStrategy(strategyResult);
+            }
+
             RuleBook.getInstance().add(r);
             return r;
 

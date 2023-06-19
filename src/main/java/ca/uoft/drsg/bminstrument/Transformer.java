@@ -91,7 +91,7 @@ public class Transformer implements ClassFileTransformer {
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
                 CtMethod instrumentedMethod = findMethod(ctClass);
                 if (findMethod(ctClass) == null) {
-                    LOG.info("Could not find the appropriate method");
+                    LOG.error("Could not find the appropriate method");
                     return null;
                 }
                 LOG.info("Transforming method {}", instrumentedMethod.getLongName());
@@ -101,15 +101,15 @@ public class Transformer implements ClassFileTransformer {
                     rule.getId() + ", (long)" +
                     rule.getVariableName() + ");";
                 LOG.info(insertedLine);
-                BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule);
                 // log_bci(instrumentedMethod, ctClass);
-                bcm.logVar();
-                // if (rule.getlineNumber() == -1) {
-                    // instrumentedMethod.insertBefore(insertedLine); 
-                // } else {
+                if (rule.getlineNumber() == -1) {
+                    instrumentedMethod.insertBefore(insertedLine); 
+                } else {
                 //     instrumentedMethod.insertAt(rule.getlineNumber(), 
                 //         insertedLine);
-                // }
+                    BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule);
+                    bcm.logVar();
+                }
                 // log_bci(instrumentedMethod, ctClass);
 
                 // instrumentedMethod.insertAt(rule.getlineNumber(), 
