@@ -98,17 +98,20 @@ public class Transformer implements ClassFileTransformer {
                 // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
                 String insertedLine =
                     "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
-                    rule.getId() + ", (long)" +
-                    rule.getVariableName() + ");";
-                LOG.info(insertedLine);
+                    rule.getVariableName() + ", (long)" +
+                    rule.getId() + ");";
                 // log_bci(instrumentedMethod, ctClass);
                 if (rule.getlineNumber() == -1) {
                     instrumentedMethod.insertBefore(insertedLine); 
                 } else {
                 //     instrumentedMethod.insertAt(rule.getlineNumber(), 
                 //         insertedLine);
-                    BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule);
-                    bcm.logVar();
+                    BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
+                    if (rule.getStrategy().equals("afterCall")) {
+                        bcm.logStack();
+                    } else {
+                        bcm.logVar();
+                    }
                 }
                 // log_bci(instrumentedMethod, ctClass);
 

@@ -17,8 +17,8 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		super(ringBufferSize, dirPath, eventFactory, flushToDisk);
 	}
 
-	public void put(long id, long value) {
-		LOG.info("[BM] {} {} ", id, value);
+	public void put(long value, long id) {
+		LOG.info("[BM] ID={}, {} ", id, value);
 		RingBufferInternal<LogEvent> rb = getRingBuffer();
 		long seq = rb.next();
 		rb.get(seq).set(id, value);

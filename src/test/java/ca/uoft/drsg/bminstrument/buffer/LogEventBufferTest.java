@@ -25,7 +25,7 @@ public class LogEventBufferTest {
     @Override
     public void run() {
       for (int i = 0; i < numOfIterations; i++) {
-        lb.put(0, i);
+        lb.put(i,0);
       }
     }
   }
@@ -61,7 +61,7 @@ public class LogEventBufferTest {
   @Test
   public void testBasic() {
     
-    lb.put(0, 1);
+    lb.put(1, 0);
     long res[] = lb.collectData();
     assertEquals(1, res.length);
     assertEquals(0, res[0]);

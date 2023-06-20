@@ -7,6 +7,7 @@ import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.bytecode.BadBytecode;
 import javassist.bytecode.Bytecode;
+import javassist.bytecode.ClassFile;
 import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.CodeIterator;
 import javassist.bytecode.ConstPool;
@@ -24,12 +25,16 @@ public class BytecodeManip {
     private CtMethod method;
     private CtClass clazz;
     private Rule rule;
+    private String insertedLine;
 
-    public BytecodeManip(CtMethod method, CtClass clazz, Rule rule) {
+    public BytecodeManip(CtMethod method, CtClass clazz,
+                         Rule rule, String insertedLine) {
         this.method = method;
         this.clazz = clazz;
         this.rule = rule;
+        this.insertedLine = insertedLine;
     }
+    
     private int decodeLoadParam(int op, CodeIterator ci, int index) {
         int variableIndex;
 
@@ -115,13 +120,30 @@ public class BytecodeManip {
             case Opcode.ISTORE_3:
             case Opcode.LSTORE_3:
             variableIndex = 3;
-            break;
+                break;           
             default:
             variableIndex = -1;
         }
-        
+
         return variableIndex;
     }
+    
+    private int decodeInvokeParam(int op, CodeIterator ci, int index) {
+        int globalIndex;
+        switch (op) {
+            case Opcode.INVOKEINTERFACE:
+            case Opcode.INVOKESTATIC:
+            case Opcode.INVOKESPECIAL:
+            case Opcode.INVOKEDYNAMIC:
+            case Opcode.INVOKEVIRTUAL:
+                globalIndex = ci.s16bitAt(index + 1);
+                break;           
+            default:
+                globalIndex = -1;
+        }
+        return globalIndex; 
+    }
+
 
     private int findVariableIndex() {
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
@@ -142,45 +164,57 @@ public class BytecodeManip {
         }
         return localVariableIndex;
     }
-    private int findInjectionIndex(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
+    private int findInjectionLocation(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
-        LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
-            codeAttribute.getAttribute(LocalVariableAttribute.tag);
-    
-        int varIndex = findVariableIndex();
+        // LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
+        //     codeAttribute.getAttribute(LocalVariableAttribute.tag);
+        ConstPool constPool = clazz.getClassFile2().getConstPool();
+        int varIndex = -1;
+
+        if (!rule.getStrategy().equals("afterCall")) {
+            varIndex = findVariableIndex();
+        }
+         
         LOG.info("variable Index = {}",varIndex);
 
         CodeIterator ci = codeAttribute.iterator();
         
         ci.move(pc_start.index);
         int index = 0;
-            while (ci.hasNext()) {
-                try {
-                    index = ci.next();
-                } catch (Exception e) {
-                    LOG.info(e.toString());
-                }
-                if (index >= pc_end.index) {
-                    LOG.info("arrived at pc_end and did not find");
+        while (ci.hasNext()) {
+            try {
+                index = ci.next();
+            } catch (Exception e) {
+                LOG.info(e.toString());
+            }
+            if (index >= pc_end.index) {
+                LOG.info("arrived at pc_end and did not find");
+                break;
+            }
+            int op = ci.byteAt(index);
+            LOG.info("bci={}, {}",index, Mnemonic.OPCODE[op]);
+            
+            // if (rule.getStrategy().equals("after")) {
+
+
+            // }
+
+            if (rule.getStrategy().equals("before")) {
+                int res = decodeLoadParam(op, ci, index);
+                LOG.info("decodeLoadParam = {}", res);
+                if (res == varIndex) {
                     break;
                 }
-                int op = ci.byteAt(index);
-                LOG.info("bci={}, {}",index, Mnemonic.OPCODE[op]);
+            } else if (rule.getStrategy().equals("afterCall")) {
                 
-                // if (rule.getStrategy().equals("after")) {
+                int res = decodeInvokeParam(op, ci, index);
+                LOG.info("decodeInvokeParam = {}", res);
+                if (res > 0) {
+                    String name = constPool.getMethodrefClassName(res) + "." +
+                                  constPool.getMethodrefName(res);
+                    LOG.info("name = {}", name);
 
-
-                // }
-
-                if (rule.getStrategy().equals("before")) {
-                    int res = decodeLoadParam(op, ci, index);
-                    LOG.info("decodeLoadParam = {}",res);
-                    if (res == varIndex) {
-                        break;
-                    }
-                } else {
-                    int res = decodeStoreParam(op, ci, index);
-                    if (res == varIndex) {
+                    if (name.equals(rule.getVariableName())) {
                         try {
                             index = ci.next();
                         } catch (Exception e) {
@@ -190,7 +224,20 @@ public class BytecodeManip {
                     }
                 }
 
+            } else {
+                int res = decodeStoreParam(op, ci, index);
+                LOG.info("decodeStoreParam = {}", res);
+
+                if (res == varIndex) {
+                    try {
+                        index = ci.next();
+                    } catch (Exception e) {
+                        LOG.info(e.toString());
+                    }
+                    break;
+                }
             }
+        }
         return index;
     }
     public void logVar() {
@@ -215,16 +262,13 @@ public class BytecodeManip {
         pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
         pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
 
-        int start_index = findInjectionIndex(pc_start, pc_end);
+        int start_index = findInjectionLocation(pc_start, pc_end);
 
         CodeIterator it = codeAttribute.iterator();
 
         Javac jv = new Javac(clazz);
 
-        String insertedLine =
-            "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
-            rule.getId() + ", (long)" +
-            rule.getVariableName() + ");";
+        
         try {
             jv.recordLocalVariables(codeAttribute, pc_end.index);
             jv.recordParams(method.getParameterTypes(),Modifier.isStatic(method.getModifiers()));
@@ -262,7 +306,7 @@ public class BytecodeManip {
 
         return;
     }
-    private void log_stack(CtMethod method, CtClass clazz) {
+    public void logStack() {
 
         String instAgentClazz = "ca/uoft/drsg/bminstrument/InstrumentationAgent";
         String bufferVar = "buffer";
@@ -282,34 +326,42 @@ public class BytecodeManip {
         pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
         pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
 
-        LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
+        int start_index = findInjectionLocation(pc_start, pc_end);
 
-        int n = localVariableAttribute.tableLength();
-        int localVariableIndex = -1;
-        int i;
-        for (i = 0; i < n; ++i) {
-            int index = localVariableAttribute.index(i);
-            LOG.info("{} {} {}",localVariableAttribute.descriptor(i), localVariableAttribute.variableName(i),
-                      index);
-            String varName = localVariableAttribute.variableName(i);
-            if (varName.equals(rule.getVariableName())) {
-                localVariableIndex = localVariableAttribute.index(i);
-                break;
-            }
-        }
+        // LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
+
+        // int n = localVariableAttribute.tableLength();
+        // int localVariableIndex = -1;
+        // int i;
+        // for (i = 0; i < n; ++i) {
+        //     int index = localVariableAttribute.index(i);
+        //     LOG.info("{} {} {}",localVariableAttribute.descriptor(i), localVariableAttribute.variableName(i),
+        //               index);
+        //     String varName = localVariableAttribute.variableName(i);
+        //     if (varName.equals(rule.getVariableName())) {
+        //         localVariableIndex = localVariableAttribute.index(i);
+        //         break;
+        //     }
+        // }
         // LOG.info("line num =");
         // lineNumberAttribute.toStartPc(rule.getlineNumber() + 1);
         // LOG.info("bci = {}",bci_initial2);
         ConstPool cPool = clazz.getClassFile().getConstPool();
         // cPool.addClassInfo(instAgentClazz);
         // cPool.addNameAndTypeInfo(bufferVar, bufferType);
+        
         Bytecode code = new Bytecode(cPool);
         // clazz.get
+        // assume data is int
+                // code.add(Bytecode.SWAP);
+        
+        code.add(Bytecode.DUP);
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        code.addIconst(rule.getId());
+        // assume data is int
+        code.add(Bytecode.SWAP);
+        
         code.add(Bytecode.I2L);
-        // code.add(Bytecode.DUP2_X2);
-        code.addIload(localVariableIndex);
+        code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
         code.addInvokevirtual(bufferClazz, putMethod, putMethodType);
         // code.addReturn(null);
@@ -318,7 +370,7 @@ public class BytecodeManip {
         // code.setMaxLocals(1);
 
         CodeIterator ci = codeAttribute.iterator();
-        ci.move(pc_start.index);
+        ci.move(start_index);
         // while (ci.hasNext()) {
         //     int index = 0;
         //     try {
