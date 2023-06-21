@@ -44,7 +44,7 @@ public class RuleBook {
         LOG.debug("current rules: {}", rules);
 
         /* register it with the transformer */
-        r.register();
+        value.register();
 
         return r.getId();
     }
@@ -117,12 +117,13 @@ public class RuleBook {
         for (String k1: rules.keySet()) {
             ClassRules v1 = rules.get(k1);
             Map<String, List<Rule>> methodRules = v1.getMethodRules();
-            for (String k2: methodRules.keySet()) {
-                List<Rule> v2 = methodRules.get(k2);
-                for (Rule r: v2) {
-                    r.unregister();
-                }
-            }
+            v1.unregister();
+            // for (String k2: methodRules.keySet()) {
+            //     List<Rule> v2 = methodRules.get(k2);
+            //     for (Rule r: v2) {
+            //         r.unregister();
+            //     }
+            // }
             methodRules.clear();
             methodRules = null;
 

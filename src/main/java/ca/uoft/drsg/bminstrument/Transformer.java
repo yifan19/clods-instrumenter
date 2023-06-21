@@ -9,6 +9,8 @@ import java.security.ProtectionDomain;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -26,21 +28,20 @@ import javassist.Modifier;
 public class Transformer implements ClassFileTransformer {
     private static final Logger LOG = LogManager.getLogger(Transformer.class);
 
-	private Rule rule;
+	private ClassRules classRules;
 
-	public Transformer(Rule rule) {
-		this.rule = rule;
+	public Transformer(ClassRules classRules) {
+        this.classRules = classRules;
+    }
 
-	}
-
-	public CtMethod findMethod(CtClass clazz) throws NotFoundException {
+	public CtMethod findMethod(CtClass clazz, Rule rule) throws NotFoundException {
 		CtMethod[] methods = clazz.getDeclaredMethods();
 		CtMethod ret = null;
 		for (CtMethod method : methods) {
 			LOG.debug("method seen {}", method.getName());
 			if (rule.getMethodName().equals(method.getName())) {
 				LOG.info("found potential method for transformation {}", rule.getMethodName());
-                if (areParamsEqual(method)) {
+                if (areParamsEqual(method, rule)) {
                     return method;
                 }
             }
@@ -48,7 +49,7 @@ public class Transformer implements ClassFileTransformer {
         return null;
 	}
 
-    public boolean areParamsEqual(CtMethod method) throws NotFoundException{
+    public boolean areParamsEqual(CtMethod method, Rule rule) throws NotFoundException{
         String [] ruleParams = rule.getParameters();
         CtClass[] targetMethodParams = method.getParameterTypes();
 
@@ -76,8 +77,8 @@ public class Transformer implements ClassFileTransformer {
     @Override
 	public byte[] transform(ClassLoader loader, String className, Class classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-		byte[] byteCode = classfileBuffer;
-		String classNameSlash = rule.getClassName().replace(".", "/");
+        byte[] byteCode = classfileBuffer;
+		String classNameSlash = classRules.getClassName().replace(".", "/");
 
 		LOG.info("loader: " + loader + "; " + "className: " + className);
 		// byte[] toAdd = new byte[] {(byte) 0xb2, 0x00, 0x05, 0x04, (byte) 0x60, (byte) 0xb3, 0x00,0x05};
@@ -89,45 +90,51 @@ public class Transformer implements ClassFileTransformer {
 			try {
 				ClassPool classPool = ClassPool.getDefault();
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
-                CtMethod instrumentedMethod = findMethod(ctClass);
-                if (findMethod(ctClass) == null) {
-                    LOG.error("Could not find the appropriate method");
-                    return null;
-                }
-                LOG.info("Transforming method {}", instrumentedMethod.getLongName());
-                // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
-                String insertedLine =
-                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
-                    rule.getVariableName() + ", (long)" +
-                    rule.getId() + ");";
-                // log_bci(instrumentedMethod, ctClass);
-                if (rule.getlineNumber() == -1) {
-                    instrumentedMethod.insertBefore(insertedLine); 
-                } else {
-                //     instrumentedMethod.insertAt(rule.getlineNumber(), 
-                //         insertedLine);
-                    BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
-                    if (rule.getStrategy().equals("afterCall")) {
-                        bcm.logStack();
-                    } else {
-                        bcm.logVar();
+                for (String key: classRules.getMethodRules().keySet()) {
+                    List<Rule> methodRules = classRules.getMethodRules().get(key);
+                    for (Rule rule: methodRules) {
+                        CtMethod instrumentedMethod = findMethod(ctClass, rule);
+                        if (instrumentedMethod == null) {
+                            LOG.error("Could not find the appropriate method");
+                            return null;
+                        }
+                        LOG.info("Transforming method {}", instrumentedMethod.getLongName());
+                        // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
+                        String insertedLine =
+                            "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
+                            rule.getVariableName() + ", (long)" +
+                            rule.getId() + ");";
+                        // log_bci(instrumentedMethod, ctClass);
+                        if (rule.getlineNumber() == -1) {
+                            instrumentedMethod.insertBefore(insertedLine); 
+                        } else {
+                        //     instrumentedMethod.insertAt(rule.getlineNumber(), 
+                        //         insertedLine);
+                            BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
+                            if (rule.getStrategy().equals("afterCall")) {
+                                bcm.logStack();
+                            } else {
+                                bcm.logVar();
+                            }
+                        }
+                        // log_bci(instrumentedMethod, ctClass);
+        
+                        // instrumentedMethod.insertAt(rule.getlineNumber(), 
+                        // 	rule.getVariableName() + "++;");
+                        byteCode = ctClass.toBytecode();
+                        
+                        try (FileOutputStream fos = new FileOutputStream("/data/new" + rule.getId() + ".class")) {
+                            fos.write(byteCode);
+                        }
+                        ctClass.detach();
                     }
                 }
-                // log_bci(instrumentedMethod, ctClass);
+            } catch (Throwable ex) {
+                LOG.info("Exception caught: " + ex);
+                ex.printStackTrace();
+            }
+        }
 
-                // instrumentedMethod.insertAt(rule.getlineNumber(), 
-				// 	rule.getVariableName() + "++;");
-				byteCode = ctClass.toBytecode();
-                
-                try (FileOutputStream fos = new FileOutputStream("/data/new" + rule.getId() + ".class")) {
-                    fos.write(byteCode);
-                }
-				ctClass.detach();
-			} catch (Throwable ex) {
-				LOG.info("Exception caught: " + ex);
-				ex.printStackTrace();
-			}
-		}
 		return byteCode;
 	}
 }
