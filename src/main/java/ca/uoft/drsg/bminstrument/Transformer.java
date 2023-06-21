@@ -90,8 +90,8 @@ public class Transformer implements ClassFileTransformer {
 			try {
 				ClassPool classPool = ClassPool.getDefault();
 				CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
-                for (String key: classRules.getMethodRules().keySet()) {
-                    List<Rule> methodRules = classRules.getMethodRules().get(key);
+                for (String key: classRules.keySet()) {
+                    List<Rule> methodRules = classRules.get(key);
                     for (Rule rule: methodRules) {
                         CtMethod instrumentedMethod = findMethod(ctClass, rule);
                         if (instrumentedMethod == null) {

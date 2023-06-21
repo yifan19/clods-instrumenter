@@ -12,10 +12,9 @@ import org.apache.logging.log4j.Logger;
  * All sorted array of all the rules for a particular method
  * 
  */
-public class ClassRules {
+public class ClassRules extends HashMap<String, List<Rule>> {
     private static final Logger LOG = LogManager.getLogger(ClassRules.class);
     // private static int nextID = 0;
-    private Map<String, List<Rule> > methodRules;
     private String className;
     private Transformer transformer;
    
@@ -24,13 +23,8 @@ public class ClassRules {
         return className;
     }
 
-    public Map<String, List<Rule>> getMethodRules() {
-        return methodRules;
-    }
-
-
     public ClassRules(String className) {
-        this.methodRules = new HashMap<>();
+        super();
         this.className = className;
         this.transformer = null;
     }
@@ -58,11 +52,11 @@ public class ClassRules {
     public void add(Rule rule) {
         String key = genKey(rule);
         List<Rule> value;
-        if (methodRules.containsKey(key)) {
-            value = methodRules.get(key);
+        if (containsKey(key)) {
+            value = get(key);
         } else {
             value = new ArrayList<>();
-            methodRules.put(key, value);
+            put(key, value);
         }
         value.add(rule);
 
@@ -79,10 +73,6 @@ public class ClassRules {
         }
         /* found the index */
         return index;
-    }
-
-    public List<Rule> get(Rule rule) {
-        return methodRules.getOrDefault(genKey(rule), null);        
     }
 
     public void register() {
@@ -145,11 +135,11 @@ public class ClassRules {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (String k : methodRules.keySet()) {
+        for (String k : keySet()) {
             sb.append("(");
             sb.append(k);
             sb.append("): [");
-            List<Rule> rules = methodRules.get(k);
+            List<Rule> rules = get(k);
             for (Rule r: rules) {
                 sb.append(r.toString());
                 sb.append(", ");
@@ -161,7 +151,7 @@ public class ClassRules {
             sb.append("], ");
         }
 
-        if (methodRules.keySet().size() >= 1) {
+        if (keySet().size() >= 1) {
             int len = sb.length();
             sb.delete(len - 2, len);
         }

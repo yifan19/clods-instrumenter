@@ -60,7 +60,7 @@ public class RuleBook {
         int index;
         for (String k1: rules.keySet()) {
             ClassRules v1 = rules.get(k1);
-            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            Map<String, List<Rule>> methodRules = v1;
             for (String k2: methodRules.keySet()) {
                 List<Rule> v2 = methodRules.get(k2);
                 index = ClassRules.indexById(id, v2);
@@ -78,7 +78,7 @@ public class RuleBook {
         /* found the index */
         for (String k1: rules.keySet()) {
             ClassRules v1 = rules.get(k1);
-            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            Map<String, List<Rule>> methodRules = v1;
             for (String k2: methodRules.keySet()) {
                 List<Rule> v2 = methodRules.get(k2);
                 index = ClassRules.indexById(id, v2);
@@ -102,7 +102,7 @@ public class RuleBook {
         int count = 0;
         for (String k1: rules.keySet()) {
             ClassRules v1 = rules.get(k1);
-            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            Map<String, List<Rule>> methodRules = v1;
             for (String k2: methodRules.keySet()) {
                 List<Rule> v2 = methodRules.get(k2);
                 for (Rule r: v2) {
@@ -116,7 +116,7 @@ public class RuleBook {
     public void clear() {
         for (String k1: rules.keySet()) {
             ClassRules v1 = rules.get(k1);
-            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            Map<String, List<Rule>> methodRules = v1;
             v1.unregister();
             // for (String k2: methodRules.keySet()) {
             //     List<Rule> v2 = methodRules.get(k2);
