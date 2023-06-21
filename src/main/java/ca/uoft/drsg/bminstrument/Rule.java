@@ -12,10 +12,11 @@ public class Rule {
     private String[] parameterTypes;
     private int lineNumber;
     private String variableName;
+    private int byteCodeIndex;
     private String strategy;
+    ;
 
-
-    Rule(int id, String className, String methodName, int lineNumber, String variableName) {
+    Rule(int id, String className, String methodName, int lineNumber, int byteCodeIndex, String variableName) {
         this.id = id;
         this.className = className;
         this.methodName = methodName;
@@ -23,6 +24,7 @@ public class Rule {
         this.variableName = variableName;
         this.parameterTypes = null;
         this.strategy = "before";
+        this.byteCodeIndex = byteCodeIndex;
     }
 
     public void setParameters(String[] parameterTypes) {
@@ -43,6 +45,7 @@ public class Rule {
     public int getlineNumber() {
         return lineNumber;
     }
+
     public String getMethodName() {
         return methodName;
     }
@@ -51,6 +54,9 @@ public class Rule {
     }
     public String getClassName() {
         return className;
+    }
+    public int getByteCodeIndex() {
+        return byteCodeIndex;
     }
     public String getVariableName() {
         return variableName;

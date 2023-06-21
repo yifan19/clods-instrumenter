@@ -32,6 +32,8 @@ public class ProtocolTest {
       prop.setProperty("methodName", "foo");
       // prop.setProperty("parameterType");
       prop.setProperty("lineNumber", "100");
+      prop.setProperty("byteCodeIndex", "99");
+
       prop.setProperty("variableName", "bar");
   
       prop.store(output, "for testing purposes");
@@ -51,6 +53,7 @@ public class ProtocolTest {
       prop.setProperty("className", "org.test");
       prop.setProperty("methodName", "foo");
       // prop.setProperty("parameterType");
+      prop.setProperty("byteCodeIndex", "0");
       prop.setProperty("lineNumber", "entry");
       prop.setProperty("variableName", "bar");
   
@@ -83,6 +86,7 @@ public class ProtocolTest {
     assertEquals("OK", res.substring(0, 2));
     Integer.parseInt(res.substring(3));
     assertEquals("{org.test}: (foo()): [:100#bar]", RuleBook.getInstance().toString());
+    assertEquals(RuleBook.getInstance().searchById(10).getByteCodeIndex(), 99);
   }
   @Test
   public void testDelete() {

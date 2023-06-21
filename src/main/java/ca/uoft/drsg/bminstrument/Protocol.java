@@ -41,10 +41,12 @@ public class Protocol {
             // System.out.println(prop.getProperty("parameterType"));
             String lineNumber = prop.getProperty("lineNumber");
             String variableName = prop.getProperty("variableName");
-            
+            String byteCodeIndex = prop.getProperty("byteCodeIndex");
+
             if (ID == null ||
                 className == null || methodName == null ||
-                lineNumber == null || variableName == null) {
+                lineNumber == null || variableName == null ||
+                byteCodeIndex == null) {
                     return null;
             }
             int lineNumber_int = -1;
@@ -56,13 +58,16 @@ public class Protocol {
                 }
             }
             int ID_int = 0;
+            int byteCodeIndex_int = 0;
             try {
                 ID_int = Integer.parseInt(ID);
+                byteCodeIndex_int = Integer.parseInt(byteCodeIndex);
+
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
 
-            Rule r = new Rule(ID_int, className, methodName, lineNumber_int, variableName);
+            Rule r = new Rule(ID_int, className, methodName, lineNumber_int, byteCodeIndex_int, variableName);
             
             if (prop.containsKey("parameterTypes")) {
                 String parameter_result = prop.getProperty("parameterTypes");

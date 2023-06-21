@@ -25,13 +25,13 @@ public class RuleTest {
   @Test
   public void testRuleCreation() {  
     
-    Rule r = new Rule(0, "hello", "bye", 10, "foo");
+    Rule r = new Rule(0, "hello", "bye", 10, 0, "foo");
     rb.add(r);
     assertEquals(1, rb.size()); 
     
     assertEquals("{hello}: (bye()): [:10#foo]", rb.toString());
 
-    Rule r2 = new Rule(1, "hello", "bye", 11, "bar");
+    Rule r2 = new Rule(1, "hello", "bye", 11, 0, "bar");
 
     rb.add(r2);
     assertEquals(2, rb.size()); 
@@ -46,8 +46,8 @@ public class RuleTest {
 
   @Test  
   public void testRuleDeletion() {  
-    Rule r1 = new Rule(0, "hello", "bye", 10, "foo");
-    Rule r2 = new Rule(1, "hello", "bye", 11, "foo2");
+    Rule r1 = new Rule(0, "hello", "bye", 10, 0, "foo");
+    Rule r2 = new Rule(1, "hello", "bye", 11, 0, "foo2");
     rb.add(r1);
     rb.add(r2);
     assertEquals(2, rb.size());
@@ -60,8 +60,8 @@ public class RuleTest {
 
   @Test  
   public void testRuleDeletionDiffMethod() {  
-    Rule r1 = new Rule(0, "hello", "bye", 10, "foo");
-    Rule r2 = new Rule(1, "hello", "bye2", 11, "foo2");
+    Rule r1 = new Rule(0, "hello", "bye", 10, 0, "foo");
+    Rule r2 = new Rule(1, "hello", "bye2", 11, 0, "foo2");
     rb.add(r1);
     rb.add(r2);
     assertEquals(2, rb.size());
@@ -74,8 +74,8 @@ public class RuleTest {
 
   @Test  
   public void testRuleDeletionDiffClass() {  
-    Rule r1 = new Rule(0, "hello", "bye", 10, "foo");
-    Rule r2 = new Rule(1, "hello2", "bye2", 11, "foo2");
+    Rule r1 = new Rule(0, "hello", "bye", 10, 0, "foo");
+    Rule r2 = new Rule(1, "hello2", "bye2", 11, 0, "foo2");
     rb.add(r1);
     rb.add(r2);
     assertEquals(2, rb.size());
@@ -96,11 +96,11 @@ public class RuleTest {
     String[] paramTypes = params_str.split(",");
     String methodName = "chooseRandom";
     List<Rule> ruleList = new ArrayList<>();
-    Rule r0 = new Rule(0, className, methodName, 528, "newExcludedNodes");
-    Rule r1 = new Rule(1, className, methodName, 524, "i");
-    Rule r2 = new Rule(2, className, methodName, 518, "Set.add");
-    Rule r3 = new Rule(3, className, methodName, 515, "numOfReplicas");
-    Rule r4 = new Rule(4, className, methodName, 515, "numOfAvailableNodes");
+    Rule r0 = new Rule(0, className, methodName, 528, 0, "newExcludedNodes");
+    Rule r1 = new Rule(1, className, methodName, 524, 0, "i");
+    Rule r2 = new Rule(2, className, methodName, 518, 0, "Set.add");
+    Rule r3 = new Rule(3, className, methodName, 515, 0, "numOfReplicas");
+    Rule r4 = new Rule(4, className, methodName, 515, 0, "numOfAvailableNodes");
 
     ruleList.add(r0);
     ruleList.add(r1);
