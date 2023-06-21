@@ -1,7 +1,9 @@
 package ca.uoft.drsg.bminstrument;
 
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,65 +14,118 @@ public class RuleBook {
     private static final Logger LOG = LogManager.getLogger(RuleBook.class);
     private static RuleBook instance = new RuleBook();
 
-    private List<Rule> rules;
+    private Map<String, ClassRules> rules;
 
     private RuleBook(){
-        rules = new ArrayList<Rule>();
+        rules = new HashMap<>();
     }
 
     public static RuleBook getInstance(){
         return instance;
     }
 
+    private String genKey(Rule rule) {
+        StringBuilder keyBuilder = new StringBuilder(rule.getClassName());
+        return keyBuilder.toString();
+    }
+
     public int add(Rule r) {
-        // assume all rules have unique ID
+        String key = genKey(r);
+        ClassRules value;
         LOG.info("adding rule {} to rulebook", r);
-        rules.add(r);
+        if (rules.containsKey(key)) {
+            value = rules.get(key);
+        } else {
+            value = new ClassRules(r.getClassName());
+            rules.put(key,value);
+        }
+        value.add(r);
+        LOG.info("creating new class {}", value);
+        LOG.debug("current rules: {}", rules);
+
         /* register it with the transformer */
         r.register();
 
         return r.getId();
     }
-    private int indexById(int id) {
-        int index = -1;
-        int size = rules.size();
-        for (int i = 0; i < size; i++) {
-            if (rules.get(i).getId() == id) {
-                index = i;
-                break;
+
+    // public int add(List<Rule> rules) {
+    //     for (Rule r: rules) {
+    //         add(r);
+    //     }
+    // }
+
+    
+    public Rule searchById(int id) {
+        int index;
+        for (String k1: rules.keySet()) {
+            ClassRules v1 = rules.get(k1);
+            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            for (String k2: methodRules.keySet()) {
+                List<Rule> v2 = methodRules.get(k2);
+                index = ClassRules.indexById(id, v2);
+                if (index != -1) {
+                    return v2.get(index);
+                }
+                
             }
         }
-        /* found the index */
-        return index;
-    }
-    public Rule searchById(int id) {
-        int index = indexById(id);
-        if (index == -1) {
-            return null;
-        }
-        return rules.get(index);
+        return null;
 
     }
     public boolean removeById(int id) {
-        int index = indexById(id);
+        int index;
         /* found the index */
-        if (index != -1) {
-            Rule tgt_rule = rules.get(index);
-            tgt_rule.unregister(); 
-            rules.remove(index);
-            return true;
-        } else {
-            return false;
+        for (String k1: rules.keySet()) {
+            ClassRules v1 = rules.get(k1);
+            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            for (String k2: methodRules.keySet()) {
+                List<Rule> v2 = methodRules.get(k2);
+                index = ClassRules.indexById(id, v2);
+                if (index != -1) {
+                    v2.remove(index);
+                    if (v2.size() == 0) {
+                        methodRules.remove(k2,v2);
+                        if(methodRules.size() == 0) {
+                            rules.remove(k1,v1);
+                        }
+                    }
+                    return true;
+                }
+                
+            }
         }
+        return false;
     }
 
     public int size() {
-        return rules.size();
+        int count = 0;
+        for (String k1: rules.keySet()) {
+            ClassRules v1 = rules.get(k1);
+            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            for (String k2: methodRules.keySet()) {
+                List<Rule> v2 = methodRules.get(k2);
+                for (Rule r: v2) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public void clear() {
-        for (Rule r: rules) {
-            r.unregister();
+        for (String k1: rules.keySet()) {
+            ClassRules v1 = rules.get(k1);
+            Map<String, List<Rule>> methodRules = v1.getMethodRules();
+            for (String k2: methodRules.keySet()) {
+                List<Rule> v2 = methodRules.get(k2);
+                for (Rule r: v2) {
+                    r.unregister();
+                }
+            }
+            methodRules.clear();
+            methodRules = null;
+
         }
         rules.clear();
     }
@@ -78,15 +133,22 @@ public class RuleBook {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (Rule r : rules) {
-            sb.append(r.toString()).append(", ");
+
+        
+        for (String k : rules.keySet()) {
+            sb.append("{");
+            sb.append(k);
+            sb.append("}: ");
+            ClassRules v = rules.get(k);
+            sb.append(v.toString());
+            sb.append(", ");
         }
-        if (rules.size() >= 1) {
+        if (rules.keySet().size() >= 1) {
             int len = sb.length();
             sb.delete(len - 2, len);
+        } else {
+            sb.append("<empty>");
         }
-        sb.append("]");
         return sb.toString();
     }
         

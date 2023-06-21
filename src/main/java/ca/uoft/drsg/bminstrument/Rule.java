@@ -110,6 +110,6 @@ public class Rule {
     }
     @Override
     public String toString() {
-        return className + '.' + methodName + '#' + lineNumber + ":" + variableName;
+        return ":" + lineNumber + "#" + variableName ;
     }
 }

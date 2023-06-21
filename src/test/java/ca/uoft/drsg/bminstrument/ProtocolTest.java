@@ -82,17 +82,17 @@ public class ProtocolTest {
     String res = proto.process("add " + filename);
     assertEquals("OK", res.substring(0, 2));
     Integer.parseInt(res.substring(3));
-    assertEquals("[org.test.foo#100:bar]", RuleBook.getInstance().toString());
+    assertEquals("{org.test}: (foo()): [:100#bar]", RuleBook.getInstance().toString());
   }
   @Test
   public void testDelete() {
     Protocol proto = new Protocol();
     String res = proto.process("add " + filename);
-    assertEquals("[org.test.foo#100:bar]", RuleBook.getInstance().toString());
+    assertEquals("{org.test}: (foo()): [:100#bar]", RuleBook.getInstance().toString());
     int id = Integer.parseInt(res.substring(3));
     String res2 = proto.process("delete " + Integer.toString(id));
     assertEquals("OK", res2.substring(0, 2));
-    assertEquals("[]", RuleBook.getInstance().toString());
+    assertEquals("<empty>", RuleBook.getInstance().toString());
   }
 
   @Test
@@ -100,13 +100,13 @@ public class ProtocolTest {
     Protocol proto = new Protocol();
     String res = proto.process("add " + filename2);
     // -1 also means entry
-    assertEquals("[org.test.foo#-1:bar]", RuleBook.getInstance().toString());
+    assertEquals("{org.test}: (foo()): [:-1#bar]", RuleBook.getInstance().toString());
     int id = Integer.parseInt(res.substring(3));
     Rule r = RuleBook.getInstance().searchById(id);
     assertEquals(99, r.getId());
     String res2 = proto.process("delete " + Integer.toString(id));
     assertEquals("OK", res2.substring(0, 2));
-    assertEquals("[]", RuleBook.getInstance().toString());
+    assertEquals("<empty>", RuleBook.getInstance().toString());
   }
 
 }
