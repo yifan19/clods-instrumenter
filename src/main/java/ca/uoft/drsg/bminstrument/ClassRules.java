@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -59,7 +59,11 @@ public class ClassRules extends HashMap<String, List<Rule>> {
             put(key, value);
         }
         value.add(rule);
-
+        Collections.sort(value, new Rule.RuleComparator());
+        for (int i = 0; i < value.size(); i++) {
+            LOG.info(value.get(i));
+        }
+        
     }
 
     static public int indexById(int id, List<Rule> rules) {
@@ -98,7 +102,8 @@ public class ClassRules extends HashMap<String, List<Rule>> {
             targetCls = Class.forName(className);
             return targetCls;
         } catch (Exception ex) {
-            LOG.error("Class [{}] not found with Class.forName", className);
+            LOG.error("Class {} not found with Class.forName", className);
+            LOG.error(ex);
         }
         // otherwise iterate all loaded classes and find what we want
         for(Class<?> clazz: InstrumentationAgent.instrumentation.getAllLoadedClasses()) {
@@ -130,6 +135,7 @@ public class ClassRules extends HashMap<String, List<Rule>> {
             trigger_retransformation();
             return res;
     }
+
 
     @Override
     public String toString() {

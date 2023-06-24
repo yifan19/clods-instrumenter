@@ -33,7 +33,6 @@ public class ProtocolTest {
       // prop.setProperty("parameterType");
       prop.setProperty("lineNumber", "100");
       prop.setProperty("byteCodeIndex", "99");
-
       prop.setProperty("variableName", "bar");
   
       prop.store(output, "for testing purposes");

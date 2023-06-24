@@ -1,5 +1,7 @@
 package ca.uoft.drsg.bminstrument;
 
+import java.util.Comparator;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class Rule {
@@ -60,6 +62,13 @@ public class Rule {
     }
     public String getVariableName() {
         return variableName;
+    }
+
+    static class RuleComparator implements Comparator<Rule> {
+        @Override
+        public int compare(Rule a, Rule b) {
+            return b.getByteCodeIndex() - a.getByteCodeIndex();
+        }
     }
 
     @Override

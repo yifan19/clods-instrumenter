@@ -106,35 +106,33 @@ public class Transformer implements ClassFileTransformer {
                             rule.getId() + ");";
                         // log_bci(instrumentedMethod, ctClass);
                         if (rule.getlineNumber() == -1) {
-                            instrumentedMethod.insertBefore(insertedLine); 
+                            instrumentedMethod.insertBefore(insertedLine);
                         } else {
                         //     instrumentedMethod.insertAt(rule.getlineNumber(), 
                         //         insertedLine);
                             BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
-                            if (rule.getStrategy().equals("afterCall")) {
-                                bcm.logStack();
-                            } else {
-                                bcm.logVar();
-                            }
+                            bcm.logStack();
                         }
                         // log_bci(instrumentedMethod, ctClass);
         
                         // instrumentedMethod.insertAt(rule.getlineNumber(), 
                         // 	rule.getVariableName() + "++;");
-                        byteCode = ctClass.toBytecode();
                         
-                        try (FileOutputStream fos = new FileOutputStream("/data/new" + rule.getId() + ".class")) {
-                            fos.write(byteCode);
-                        }
-                        ctClass.detach();
                     }
                 }
+                byteCode = ctClass.toBytecode();
+                        
+                try (FileOutputStream fos = new FileOutputStream("/data/new" + classRules.getClassName() + ".class")) {
+                    fos.write(byteCode);
+                }
+
+                ctClass.detach();
+
             } catch (Throwable ex) {
                 LOG.info("Exception caught: " + ex);
                 ex.printStackTrace();
             }
         }
-
 		return byteCode;
 	}
 }

@@ -21,11 +21,20 @@ import javassist.Modifier;
 public class BytecodeManip {
 
     private static final Logger LOG = LogManager.getLogger(BytecodeManip.class);
+    private String instAgentClazz = "ca/uoft/drsg/bminstrument/InstrumentationAgent";
+    private String bufferVar = "buffer";
+    private String bufferType = "Lca/uoft/drsg/bminstrument/buffer/LogEventBuffer;";
 
+    private String bufferClazz = "ca/uoft/drsg/bminstrument/buffer/LogEventBuffer";
+    private String putMethod = "put";
+    private String putMethodType = "(JJ)V";
+    
     private CtMethod method;
     private CtClass clazz;
     private Rule rule;
     private String insertedLine;
+
+   
 
     public BytecodeManip(CtMethod method, CtClass clazz,
                          Rule rule, String insertedLine) {
@@ -128,6 +137,101 @@ public class BytecodeManip {
         return variableIndex;
     }
     
+    private void injectInstrumentation(int op, CodeIterator ci, int index, Bytecode code) {
+        switch(op) {
+            case Opcode.IINC:
+            int variableIndex = ci.signedByteAt(index + 1);
+            moveToAfterByteCode(ci);
+            grabValueLocalVariableInteger(code, variableIndex);
+            printValueDefault(code);
+            break;
+
+            // 2 stack values:
+            case Opcode.IF_ACMPEQ:
+            case Opcode.IF_ACMPNE:
+            case Opcode.IF_ICMPEQ:
+            case Opcode.IF_ICMPGE:
+            case Opcode.IF_ICMPGT:
+            case Opcode.IF_ICMPLE:
+            case Opcode.IF_ICMPLT:
+            case Opcode.IF_ICMPNE:
+
+            // 1 stack values:
+            case Opcode.IFEQ:
+            case Opcode.IFGE:
+            case Opcode.IFGT:
+            case Opcode.IFLE:
+            case Opcode.IFLT:
+            case Opcode.IFNE:
+            case Opcode.IFNONNULL:
+            case Opcode.IFNULL:
+
+
+            case Opcode.ISTORE:
+            case Opcode.LSTORE:
+            case Opcode.DSTORE_0:
+            case Opcode.LSTORE_0:
+            case Opcode.DSTORE_1:
+            case Opcode.LSTORE_1:
+            case Opcode.DSTORE_2:
+            case Opcode.LSTORE_2:
+            case Opcode.DSTORE_3:
+            case Opcode.LSTORE_3:
+            // reading a long or a double from array
+            case Opcode.LASTORE:
+            case Opcode.DASTORE:
+
+
+            // break;
+
+            default:
+            grabValueDefault(code);
+            printValueDefault(code);
+            break;
+
+        }
+    }
+    private void moveToAfterByteCode(CodeIterator ci) {
+        int index;
+        try {
+            index = ci.next();
+        } catch (Exception e) {
+            LOG.info(e.toString());
+        }
+    }
+
+    private void grabValueDefault(Bytecode code) {
+        code.add(Bytecode.DUP);
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // assume data is a java word (4 Bytes)
+        code.add(Bytecode.SWAP);
+        
+        code.add(Bytecode.I2L);
+    }
+    private void grabValueLocalVariableInteger(Bytecode code, int localVariableIndex) {
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // assume data is a java word (4 Bytes)        
+        code.addIload(localVariableIndex);
+        code.add(Bytecode.I2L);
+    }
+    private void grabValue64(Bytecode code) {
+        code.add(Bytecode.DUP2);
+        // {DATA DATA} {DATA DATA}
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // {DATA DATA} {DATA DATA} STATIC
+        code.add(Bytecode.DUP_X2);
+        // {DATA DATA} STATIC {DATA DATA} STATIC
+        code.add(Bytecode.POP);
+        // {DATA DATA} STATIC {DATA DATA}
+    }
+
+    private void printValueDefault(Bytecode code) {
+        code.addIconst(rule.getId());
+        code.add(Bytecode.I2L);
+        code.addInvokevirtual(bufferClazz, putMethod, putMethodType);
+    }
+
+
     private int decodeInvokeParam(int op, CodeIterator ci, int index) {
         int globalIndex;
         switch (op) {
@@ -306,28 +410,23 @@ public class BytecodeManip {
 
         return;
     }
+
     public void logStack() {
-
-        String instAgentClazz = "ca/uoft/drsg/bminstrument/InstrumentationAgent";
-        String bufferVar = "buffer";
-        String bufferType = "Lca/uoft/drsg/bminstrument/buffer/LogEventBuffer;";
-
-        String bufferClazz = "ca/uoft/drsg/bminstrument/buffer/LogEventBuffer";
-        String putMethod = "put";
-        String putMethodType = "(JJ)V";
+        LOG.info("logging at bytecode index {}", rule.getByteCodeIndex());;
+     
 
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
-        LineNumberAttribute lineNumberAttribute = (LineNumberAttribute) codeAttribute.getAttribute(LineNumberAttribute.tag);
+        // LineNumberAttribute lineNumberAttribute = (LineNumberAttribute) codeAttribute.getAttribute(LineNumberAttribute.tag);
 
 
-        LineNumberAttribute.Pc pc_start;
-        LineNumberAttribute.Pc pc_end;
+        // LineNumberAttribute.Pc pc_start;
+        // LineNumberAttribute.Pc pc_end;
 
-        pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
-        pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
+        // pc_start = lineNumberAttribute.toNearPc(rule.getlineNumber());
+        // pc_end = lineNumberAttribute.toNearPc(pc_start.line + 1);
 
-        int start_index = findInjectionLocation(pc_start, pc_end);
-
+        // int start_index = findInjectionLocation(pc_start, pc_end);
+        int start_index = rule.getByteCodeIndex();
         // LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
 
         // int n = localVariableAttribute.tableLength();
@@ -354,23 +453,15 @@ public class BytecodeManip {
         // clazz.get
         // assume data is int
                 // code.add(Bytecode.SWAP);
-        
-        code.add(Bytecode.DUP);
-        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        // assume data is int
-        code.add(Bytecode.SWAP);
-        
-        code.add(Bytecode.I2L);
-        code.addIconst(rule.getId());
-        code.add(Bytecode.I2L);
-        code.addInvokevirtual(bufferClazz, putMethod, putMethodType);
-        // code.addReturn(null);
-        // code.addInvokevirtual("ca/uoft/drsg/bminstrument/buffer/LogEventBuffer", "put" , "(JJ)V");
-
-        // code.setMaxLocals(1);
-
         CodeIterator ci = codeAttribute.iterator();
         ci.move(start_index);
+        int op = ci.byteAt(start_index);
+        LOG.info(Mnemonic.OPCODE[op]);
+
+        injectInstrumentation(op, ci, start_index, code);
+        // code.setMaxLocals(1);
+
+
         // while (ci.hasNext()) {
         //     int index = 0;
         //     try {
@@ -386,6 +477,7 @@ public class BytecodeManip {
         //         break;
         //     }
         //     LOG.info(Mnemonic.OPCODE[op]);
+
         // }
 
         try {
