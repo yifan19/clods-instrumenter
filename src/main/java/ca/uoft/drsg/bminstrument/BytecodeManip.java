@@ -29,6 +29,9 @@ public class BytecodeManip {
     private String putMethod = "put";
     private String putMethodType = "(JJ)V";
     
+    private String putLoopMethod = "putLoop";
+    private String putLoopMethodType = "(JJ)V";
+
     private CtMethod method;
     private CtClass clazz;
     private Rule rule;
@@ -143,7 +146,7 @@ public class BytecodeManip {
             int variableIndex = ci.signedByteAt(index + 1);
             moveToAfterByteCode(ci);
             grabValueLocalVariableInteger(code, variableIndex);
-            printValueDefault(code);
+            callPut(code);
             break;
 
             // 2 stack values:
@@ -155,7 +158,6 @@ public class BytecodeManip {
             case Opcode.IF_ICMPLE:
             case Opcode.IF_ICMPLT:
             case Opcode.IF_ICMPNE:
-
             // 1 stack values:
             case Opcode.IFEQ:
             case Opcode.IFGE:
@@ -165,8 +167,8 @@ public class BytecodeManip {
             case Opcode.IFNE:
             case Opcode.IFNONNULL:
             case Opcode.IFNULL:
-            grabValueDefault(code);
-            printValueDefault(code);
+            grabValueLoop(code);
+            callPutEntry(code);
             break;
 
             case Opcode.ISTORE:
@@ -189,7 +191,7 @@ public class BytecodeManip {
 
             default:
             grabValueDefault(code);
-            printValueDefault(code);
+            callPut(code);
             break;
 
         }
@@ -211,6 +213,11 @@ public class BytecodeManip {
         
         code.add(Bytecode.I2L);
     }
+    private void grabValueLoop(Bytecode code) {
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        code.addLconst(rule.getLoopId());
+    }
+
     private void grabValueLocalVariableInteger(Bytecode code, int localVariableIndex) {
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         // assume data is a java word (4 Bytes)        
@@ -228,11 +235,17 @@ public class BytecodeManip {
         // {DATA DATA} STATIC {DATA DATA}
     }
 
-    private void printValueDefault(Bytecode code) {
+    private void callPut(Bytecode code) {
         code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
         code.addInvokevirtual(bufferClazz, putMethod, putMethodType);
     }
+    private void callPutEntry(Bytecode code) {
+        code.addIconst(rule.getId());
+        code.add(Bytecode.I2L);
+        code.addInvokevirtual(bufferClazz, putLoopMethod, putLoopMethodType);
+    }
+
 
 
     private int decodeInvokeParam(int op, CodeIterator ci, int index) {

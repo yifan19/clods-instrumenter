@@ -106,7 +106,19 @@ public class Transformer implements ClassFileTransformer {
                             rule.getId() + ");";
                         // log_bci(instrumentedMethod, ctClass);
                         if (rule.getlineNumber() == -1) {
-                            instrumentedMethod.insertBefore(insertedLine);
+                            if (rule.getStrategy().equals("logCutting")) {
+                                String insertedLine2 =
+                                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putEntry();";
+                                instrumentedMethod.insertBefore(insertedLine2);
+                            } else if (rule.getStrategy().equals("stackTrace")) {
+                                String insertedLine3 =
+                                    "System.out.println(\"[BM][\" + Thread.currentThread().getStackTrace()[5] + \"][Stack Trace]\");\n   System.out.println(\"[BM][\" + Thread.currentThread().getStackTrace()[6] + \"][Stack Trace]\");";
+                                instrumentedMethod.insertBefore(insertedLine3);
+
+                            } else {
+                                instrumentedMethod.insertBefore(insertedLine);
+
+                            }
                         } else {
                         //     instrumentedMethod.insertAt(rule.getlineNumber(), 
                         //         insertedLine);

@@ -18,10 +18,44 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 	}
 
 	public void put(long value, long id) {
-		LOG.info("[BM] ID={}, {} ", id, value);
+		// LOG.info("[BM] ID={}, {} ", id, value);
+		System.out.println("[BM][" + Thread.currentThread().getName() + "]ID=" + id + "," + value);
 		RingBufferInternal<LogEvent> rb = getRingBuffer();
 		long seq = rb.next();
 		rb.get(seq).set(id, value);
 	}
-		
+
+	public void putLoop(long value, long id) {
+		// LOG.info("[BM] ID={}, {} ", id, value);
+		System.out.println("[BM][" + Thread.currentThread().getName() + "]ID=" + id + ",loop=" + value);
+		RingBufferInternal<LogEvent> rb = getRingBuffer();
+		long seq = rb.next();
+		rb.get(seq).set(id, value);
+	}
+
+	public void putEntry() {
+		// LOG.info("[BM] ID={}, {} ", id, value);
+		StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
+		StackTraceElement entry = stacks[2];
+		System.out.println("[BM][" + Thread.currentThread().getName() + "][Method Entry]" + entry.toString());
+		// RingBufferInternal<LogEvent> rb = getRingBuffer();
+		// long seq = rb.next();
+		// rb.get(seq).set(id, value);
+	}
+	
+	public void putStack() {
+		// LOG.info("[BM] ID={}, {} ", id, value);
+		StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
+		StackTraceElement entry = stacks[2];
+		System.out.println("[BM][" + Thread.currentThread().getName() + "][Stack Trace]");
+		for (int i = 2; i < stacks.length; i++) {
+			System.out.println(toString());
+		}
+		System.out.println("[Stack Trace]");
+		// RingBufferInternal<LogEvent> rb = getRingBuffer();
+		// long seq = rb.next();
+		// rb.get(seq).set(id, value);
+	}
+
+
 }

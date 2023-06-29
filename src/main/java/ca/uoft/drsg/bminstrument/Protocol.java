@@ -81,6 +81,19 @@ public class Protocol {
                 r.setStrategy(strategyResult);
             }
 
+            if (prop.containsKey("LoopID")) {
+                String loopID = prop.getProperty("LoopID");
+                int loopID_int = -1;
+                try {
+                    loopID_int = Integer.parseInt(loopID);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                r.setLoopId(loopID_int);
+            }
+
+
+
             RuleBook.getInstance().add(r);
             return r;
 

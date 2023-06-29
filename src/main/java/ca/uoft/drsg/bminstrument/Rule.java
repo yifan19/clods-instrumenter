@@ -9,6 +9,7 @@ public class Rule {
     // private static int nextID = 0;
     
     private int id;
+    private int loopId;
     private String className;
     private String methodName;
     private String[] parameterTypes;
@@ -16,7 +17,6 @@ public class Rule {
     private String variableName;
     private int byteCodeIndex;
     private String strategy;
-    ;
 
     Rule(int id, String className, String methodName, int lineNumber, int byteCodeIndex, String variableName) {
         this.id = id;
@@ -24,6 +24,7 @@ public class Rule {
         this.methodName = methodName;
         this.lineNumber = lineNumber;
         this.variableName = variableName;
+        this.loopId=0;
         this.parameterTypes = null;
         this.strategy = "before";
         this.byteCodeIndex = byteCodeIndex;
@@ -35,6 +36,13 @@ public class Rule {
     public void setStrategy(String strategy) {
         this.strategy = strategy;
     }    
+    public void setLoopId(int loopId) {
+        this.loopId = loopId;
+    }
+    public int getLoopId() {
+        return loopId;
+    }
+
     public String getStrategy() {
         return strategy;
     }
