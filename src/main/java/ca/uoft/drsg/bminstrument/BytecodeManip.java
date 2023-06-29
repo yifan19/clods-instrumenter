@@ -165,7 +165,9 @@ public class BytecodeManip {
             case Opcode.IFNE:
             case Opcode.IFNONNULL:
             case Opcode.IFNULL:
-
+            grabValueDefault(code);
+            printValueDefault(code);
+            break;
 
             case Opcode.ISTORE:
             case Opcode.LSTORE:
@@ -180,9 +182,10 @@ public class BytecodeManip {
             // reading a long or a double from array
             case Opcode.LASTORE:
             case Opcode.DASTORE:
-
-
-            // break;
+            case Opcode.LRETURN:
+            case Opcode.DRETURN:
+            grabValue64(code);
+            break;
 
             default:
             grabValueDefault(code);
