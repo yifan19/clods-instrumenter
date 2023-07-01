@@ -498,6 +498,11 @@ public class BytecodeManip {
 
         try {
             ci.insert(code.get());
+            int old_stack = codeAttribute.getMaxStack();
+            int new_stack = codeAttribute.computeMaxStack();
+            if (old_stack < new_stack) {
+                LOG.info("stackSizeChange: {} -> {}", old_stack, new_stack);
+            }
         } catch (BadBytecode e) {
             e.printStackTrace();
         }
