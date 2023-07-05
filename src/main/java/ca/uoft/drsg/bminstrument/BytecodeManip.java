@@ -3,8 +3,8 @@ package ca.uoft.drsg.bminstrument;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javassist.CtBehavior;
 import javassist.CtClass;
-import javassist.CtMethod;
 import javassist.bytecode.BadBytecode;
 import javassist.bytecode.Bytecode;
 import javassist.bytecode.ClassFile;
@@ -32,14 +32,14 @@ public class BytecodeManip {
     private String putLoopMethod = "putLoop";
     private String putLoopMethodType = "(JJ)V";
 
-    private CtMethod method;
+    private CtBehavior method;
     private CtClass clazz;
     private Rule rule;
     private String insertedLine;
 
    
 
-    public BytecodeManip(CtMethod method, CtClass clazz,
+    public BytecodeManip(CtBehavior method, CtClass clazz,
                          Rule rule, String insertedLine) {
         this.method = method;
         this.clazz = clazz;

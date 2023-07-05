@@ -12,7 +12,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 import javassist.ClassPool;
+import javassist.CtBehavior;
 import javassist.CtClass;
+import javassist.CtConstructor;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 import javassist.bytecode.BadBytecode;
@@ -34,10 +36,14 @@ public class Transformer implements ClassFileTransformer {
         this.classRules = classRules;
     }
 
-	public CtMethod findMethod(CtClass clazz, Rule rule) throws NotFoundException {
-		CtMethod[] methods = clazz.getDeclaredMethods();
-		CtMethod ret = null;
-		for (CtMethod method : methods) {
+	public CtBehavior findMethod(CtClass clazz, Rule rule) throws NotFoundException {
+        CtBehavior[] methods;
+        if (rule.isConstructor()) {
+            methods = clazz.getDeclaredConstructors();
+        }   else {
+           methods = clazz.getDeclaredMethods();
+        }
+		for (CtBehavior method : methods) {
 			LOG.debug("method seen {}", method.getName());
 			if (rule.getMethodName().equals(method.getName())) {
 				LOG.info("found potential method for transformation {}", rule.getMethodName());
@@ -49,7 +55,7 @@ public class Transformer implements ClassFileTransformer {
         return null;
 	}
 
-    public boolean areParamsEqual(CtMethod method, Rule rule) throws NotFoundException{
+    public boolean areParamsEqual(CtBehavior method, Rule rule) throws NotFoundException{
         String [] ruleParams = rule.getParameters();
         CtClass[] targetMethodParams = method.getParameterTypes();
 
@@ -93,7 +99,7 @@ public class Transformer implements ClassFileTransformer {
                 for (String key: classRules.keySet()) {
                     List<Rule> methodRules = classRules.get(key);
                     for (Rule rule: methodRules) {
-                        CtMethod instrumentedMethod = findMethod(ctClass, rule);
+                        CtBehavior instrumentedMethod = findMethod(ctClass, rule);
                         if (instrumentedMethod == null) {
                             LOG.error("Could not find the appropriate method");
                             return null;

@@ -65,6 +65,11 @@ public class Rule {
     public String getClassName() {
         return className;
     }
+    public boolean isConstructor() {
+        String[] all = className.split("\\.");
+        String shortened_className = all[all.length-1];
+        return shortened_className.equals(getMethodName());
+    }
     public int getByteCodeIndex() {
         return byteCodeIndex;
     }
