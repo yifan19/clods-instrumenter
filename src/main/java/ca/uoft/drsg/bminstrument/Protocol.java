@@ -72,6 +72,9 @@ public class Protocol {
             if (prop.containsKey("parameterTypes")) {
                 String parameter_result = prop.getProperty("parameterTypes");
                 String[] params = parameter_result.split(",\\s*", 0);
+                if (params.length <= 1 && params[0].equals("")) {
+                    params = new String[0];
+                }
                 r.setParameters(params);
             }
             if (prop.containsKey("strategy")) {
