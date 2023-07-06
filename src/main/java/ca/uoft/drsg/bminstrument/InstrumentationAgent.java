@@ -27,6 +27,7 @@ public class InstrumentationAgent {
         Listener listener = new Listener(portNumber);
         buffer = new LogEventBuffer(bufferSize, logDataPath,
                                     new LogEventFactory(), true);
+        listener.setDaemon(true);
         listener.start();
         // Rule CHANGME = new Rule("bar", "foo", 0, "baz");
         // start registering instrumentation
