@@ -111,6 +111,11 @@ public class Protocol {
         LOG.info("deleting rule " + predicate);
         int id;
         boolean result = false;
+        if (predicate.equals("all")) {
+            RuleBook.getInstance().clear();
+            return "OK";
+        }
+
         try {
             id = Integer.parseInt(predicate);
              result = RuleBook.getInstance().removeById(id);

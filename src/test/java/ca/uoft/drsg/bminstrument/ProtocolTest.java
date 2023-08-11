@@ -99,6 +99,18 @@ public class ProtocolTest {
   }
 
   @Test
+  public void testDeleteAll() {
+    Protocol proto = new Protocol();
+    String res = proto.process("add " + filename);
+    assertEquals("{org.test}: (foo()): [:100#bar]", RuleBook.getInstance().toString());
+    int id = Integer.parseInt(res.substring(3));
+    String res2 = proto.process("delete all");
+    assertEquals("OK", res2.substring(0, 2));
+    assertEquals("<empty>", RuleBook.getInstance().toString());
+  }
+
+
+  @Test
   public void testAddEntry() {
     Protocol proto = new Protocol();
     String res = proto.process("add " + filename2);
