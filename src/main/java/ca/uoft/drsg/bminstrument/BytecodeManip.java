@@ -32,9 +32,9 @@ public class BytecodeManip {
     private String putLoopMethod = "putLoop";
     private String putLoopMethodType = "(JJ)V";
 
-    private String objectClazz = "java/lang/Object";
-    private String hashCodeMethod = "hashCode";
-    private String hashCodeMethodType = "()I";
+    private String putObjectMethod = "putObject";
+    private String putObjectMethodType = "(Ljava/lang/Object;J)V";
+
     private CtBehavior method;
     private CtClass clazz;
     private Rule rule;
@@ -200,7 +200,7 @@ public class BytecodeManip {
             case Opcode.ASTORE_2:
             case Opcode.ASTORE_3:
             grabValueObject(code);
-            callPut(code);
+            callPutObject(code);
             break;
 
             default:
@@ -227,6 +227,14 @@ public class BytecodeManip {
         
         code.add(Bytecode.I2L);
     }
+    private void grabValueObject(Bytecode code) {
+        code.add(Bytecode.DUP);
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // assume data is a java word (4 Bytes)
+        code.add(Bytecode.SWAP);
+        // no converting the integer into long
+    }
+
     private void grabValueLoop(Bytecode code) {
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         code.addLconst(rule.getLoopId());
@@ -249,13 +257,10 @@ public class BytecodeManip {
         // {DATA DATA} STATIC {DATA DATA}
     }
 
-    private void grabValueObject(Bytecode code) {
-        code.add(Bytecode.DUP);
-        // grab the hash code
-        code.addInvokevirtual(objectClazz, hashCodeMethod, hashCodeMethodType);
-        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        code.add(Bytecode.SWAP);
+    private void callPutObject(Bytecode code) {
+        code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
+        code.addInvokevirtual(bufferClazz, putObjectMethod, putObjectMethodType);
     }
     private void callPut(Bytecode code) {
         code.addIconst(rule.getId());

@@ -25,6 +25,14 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		rb.get(seq).set(id, value);
 	}
 
+	public void putObject(Object o, long id) {
+		long value = 0;
+		if (o != null) {
+			value = o.hashCode();
+		}
+		put(value, id);
+	}
+
 	public void putLoop(long value, long id) {
 		// LOG.info("[BM] ID={}, {} ", id, value);
 		System.out.println("[BM][" + Thread.currentThread().getName() + "]ID=" + id + ",loop=" + value);
