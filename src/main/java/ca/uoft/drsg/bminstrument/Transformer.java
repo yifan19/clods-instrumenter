@@ -17,6 +17,7 @@ import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.CtMethod;
 import javassist.NotFoundException;
+import javassist.bytecode.AccessFlag;
 import javassist.bytecode.BadBytecode;
 import javassist.bytecode.Bytecode;
 import javassist.bytecode.CodeAttribute;
@@ -47,6 +48,10 @@ public class Transformer implements ClassFileTransformer {
 			LOG.debug("method seen {}", method.getName());
 			if (rule.getMethodName().equals(method.getName())) {
 				LOG.info("found potential method for transformation {}", rule.getMethodName());
+                if ((method.getModifiers() & (AccessFlag.BRIDGE | AccessFlag.SYNTHETIC)) != 0) {
+                    // checking for modifiers, some functions are auto-generated (virtual functions)
+                    continue;
+                }
                 if (areParamsEqual(method, rule)) {
                     return method;
                 }
