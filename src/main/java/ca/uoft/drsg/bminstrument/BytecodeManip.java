@@ -32,6 +32,9 @@ public class BytecodeManip {
     private String putLoopMethod = "putLoop";
     private String putLoopMethodType = "(JJ)V";
 
+    private String objectClazz = "java/lang/Object";
+    private String hashCodeMethod = "hashCode";
+    private String hashCodeMethodType = "()I";
     private CtBehavior method;
     private CtClass clazz;
     private Rule rule;
@@ -187,6 +190,17 @@ public class BytecodeManip {
             case Opcode.LRETURN:
             case Opcode.DRETURN:
             grabValue64(code);
+            callPut(code);
+            break;
+
+            case Opcode.ARETURN:
+            case Opcode.ASTORE:
+            case Opcode.ASTORE_0:
+            case Opcode.ASTORE_1:
+            case Opcode.ASTORE_2:
+            case Opcode.ASTORE_3:
+            grabValueObject(code);
+            callPut(code);
             break;
 
             default:
@@ -235,6 +249,14 @@ public class BytecodeManip {
         // {DATA DATA} STATIC {DATA DATA}
     }
 
+    private void grabValueObject(Bytecode code) {
+        code.add(Bytecode.DUP);
+        // grab the hash code
+        code.addInvokevirtual(objectClazz, hashCodeMethod, hashCodeMethodType);
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        code.add(Bytecode.SWAP);
+        code.add(Bytecode.I2L);
+    }
     private void callPut(Bytecode code) {
         code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
