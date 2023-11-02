@@ -214,7 +214,7 @@ public class BytecodeManip {
             callPutEntry(code);
             break;
 
-            case Opcode.ISTORE:
+            // case Opcode.ISTORE:
             case Opcode.LSTORE:
             case Opcode.DSTORE_0:
             case Opcode.LSTORE_0:
