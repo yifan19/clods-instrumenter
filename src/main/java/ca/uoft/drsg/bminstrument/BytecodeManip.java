@@ -151,6 +151,13 @@ public class BytecodeManip {
     }
 
     private void injectInstrumentation(int op, CodeIterator ci, int index, Bytecode code) {
+        /* hack to test out instrumentating after a branch */
+        if (rule.getStrategy().equals("conditional")) {
+            grabValueLoop(code);
+            callPutEntry(code);
+            return;
+        }
+
         switch(op) {
             case Opcode.IINC:
             int variableIndex = ci.signedByteAt(index + 1);
