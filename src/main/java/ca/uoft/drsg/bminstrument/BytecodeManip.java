@@ -142,7 +142,14 @@ public class BytecodeManip {
 
         return variableIndex;
     }
-    
+    private String decodeFieldType(int op, CodeIterator ci, int index) {
+        int globalIndex = ci.s16bitAt(index + 1);
+        ConstPool constPool = clazz.getClassFile2().getConstPool();
+        String fieldType = constPool.getFieldrefType(globalIndex);
+        LOG.info("field index = " + globalIndex + ", type is = " + fieldType);
+        return fieldType;
+    }
+
     private void injectInstrumentation(int op, CodeIterator ci, int index, Bytecode code) {
         switch(op) {
             case Opcode.IINC:
@@ -152,6 +159,32 @@ public class BytecodeManip {
             callPut(code);
             break;
 
+            case Opcode.PUTFIELD:
+            String fullType = decodeFieldType(op, ci, index);
+            char letterType = fullType.charAt(0);
+            /* a putfield can store anything, depending on the field */
+
+            switch(letterType) {
+                // Z //for boolean:
+                // B //for byte:
+                // S //for short:
+                // C //for char:
+                case 'L':
+                grabValueObject(code);
+                callPutObject(code);
+                break;
+                case 'J': // for long:
+                case 'D': //for double
+                grabValue64(code);
+                callPut(code);
+                break;
+                case 'I': // for int:
+                case 'F':// for float:
+                grabValueDefault(code);
+                callPut(code);
+                break;
+            }
+            break;
             // 2 stack values:
             case Opcode.IF_ACMPEQ:
             case Opcode.IF_ACMPNE:
