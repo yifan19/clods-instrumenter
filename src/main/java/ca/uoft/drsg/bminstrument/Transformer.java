@@ -119,7 +119,7 @@ public class Transformer implements ClassFileTransformer {
                         if (rule.getlineNumber() == -1) {
                             if (rule.getStrategy().equals("logCutting")) {
                                 String insertedLine2 =
-                                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putEntry();";
+                                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putEntry((long)" + rule.getId() + ");";
                                 instrumentedMethod.insertBefore(insertedLine2);
                             } else if (rule.getStrategy().equals("stackTrace")) {
                                 String insertedLine3 = "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putStack(" +

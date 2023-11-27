@@ -56,15 +56,17 @@ public class RingBufferInternal<E extends DataPersistable> {
     public long flushToDisk_normal() {
         // System.out.println(dir);
         // System.out.println(id + '_' + Integer.toString(fileIndex));
+        fileIndex++;
+
         boolean done = false;
-        if (( (lastElementFlushed + 1) & mask) == 0) {
-            fileIndex++;
-        }
+        // if (( (lastElementFlushed + 1) & mask) == 0) {
+        //     fileIndex++;
+        // }
         if (flush) {
             
             while (!done) {
                 LOG.info("flushToDisk: sequence = {},  lastElementFlushed = {}", sequence, lastElementFlushed);
-                Path file = Paths.get(dir, id.replace("/", "_") + '_' + Integer.toString(fileIndex));
+                Path file = Paths.get(dir, id.replace("/", "_") + '_' + Integer.toString(fileIndex) + '_' + Long.toString(System.currentTimeMillis()));
                 boolean haveWrittenDataInCycle = false;
                 try {
                     FileOutputStream fos = new FileOutputStream(file.toString());
