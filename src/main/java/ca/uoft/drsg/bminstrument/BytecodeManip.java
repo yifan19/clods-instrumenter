@@ -167,10 +167,17 @@ public class BytecodeManip {
             break;
 
             case Opcode.PUTFIELD:
+            case Opcode.GETFIELD:
             String fullType = decodeFieldType(op, ci, index);
             char letterType = fullType.charAt(0);
+            
             /* a putfield can store anything, depending on the field */
-
+            if (op == Opcode.GETFIELD) {
+                int new_index = moveToAfterByteCode(ci);
+                int new_op = ci.byteAt(new_index);
+                LOG.info("bci={}, {}",new_index, Mnemonic.OPCODE[new_op]);
+            }
+            
             switch(letterType) {
                 // Z //for boolean:
                 // B //for byte:
@@ -250,12 +257,14 @@ public class BytecodeManip {
 
         }
     }
-    private void moveToAfterByteCode(CodeIterator ci) {
-        int index;
+    private int moveToAfterByteCode(CodeIterator ci) {
+        int index = -1;
         try {
             index = ci.next();
         } catch (Exception e) {
             LOG.info(e.toString());
+        } finally {
+            return index;
         }
     }
 
