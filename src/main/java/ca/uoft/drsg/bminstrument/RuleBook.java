@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import ca.uoft.drsg.bminstrument.Transformer;
 
 // Singleton Pattern
 public class RuleBook {
@@ -28,7 +28,15 @@ public class RuleBook {
         StringBuilder keyBuilder = new StringBuilder(rule.getClassName());
         return keyBuilder.toString();
     }
-
+    public Transformer[] getTransformers() {
+        Transformer[] ret = new Transformer[rules.size()];
+        int i = 0;
+        for (String k1: rules.keySet()) {
+            ClassRules v1 = rules.get(k1);
+            ret[i++] = v1.getTransformer();
+        }
+        return ret;
+    }
     public int add(Rule r) {
         String key = genKey(r);
         ClassRules value;

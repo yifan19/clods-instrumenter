@@ -28,7 +28,14 @@ public class ClassRules extends HashMap<String, List<Rule>> {
         this.className = className;
         this.transformer = null;
     }
-
+    public Transformer getTransformer() {
+        if (this.transformer == null) {
+            LOG.error("requesting a null transformer!");
+            return null;
+        } else {
+            return this.transformer;
+        }
+    }
     private String genKey(Rule rule) {
         StringBuilder keyBuilder = new StringBuilder(rule.getMethodName());
         keyBuilder.append('(');
@@ -80,6 +87,7 @@ public class ClassRules extends HashMap<String, List<Rule>> {
     }
 
     public void register() {
+        transformer = new Transformer(this);
         if (InstrumentationAgent.instrumentation == null) {
             LOG.error("Error: Rule {} instrumentation is NULL", this);
             return;
@@ -90,7 +98,6 @@ public class ClassRules extends HashMap<String, List<Rule>> {
                 LOG.error("Error: removing tranformer failed");
             }
         }
-        transformer = new Transformer(this);
         InstrumentationAgent.instrumentation.addTransformer(transformer, true);
         trigger_retransformation();
         return;

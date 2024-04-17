@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import javassist.ClassPool;
 import javassist.CtBehavior;
@@ -36,7 +38,10 @@ public class Transformer implements ClassFileTransformer {
 	public Transformer(ClassRules classRules) {
         this.classRules = classRules;
     }
-
+    
+    public ClassRules getClassRules() {
+        return classRules;
+    }
 	public CtBehavior findMethod(CtClass clazz, Rule rule) throws NotFoundException {
         CtBehavior[] methods;
         if (rule.isConstructor()) {
@@ -62,8 +67,18 @@ public class Transformer implements ClassFileTransformer {
 
     public boolean areParamsEqual(CtBehavior method, Rule rule) throws NotFoundException{
         String [] ruleParams = rule.getParameters();
-        CtClass[] targetMethodParams = method.getParameterTypes();
-
+        String signature = method.getLongName();
+        Pattern pat = Pattern.compile(".*\\((.*)\\)", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pat.matcher(signature);
+        String[] targetMethodParams;
+        if (matcher.find()) {
+            targetMethodParams = matcher.group(1).split(",");
+            System.out.println(matcher.group(1));
+        } else {
+            LOG.error("incorrect format received from the method long name");
+            return false;
+        } 
+        
         if (ruleParams == null) {
             return true;
         }
@@ -74,9 +89,9 @@ public class Transformer implements ClassFileTransformer {
             return false;
         }
         for (int i = 0; i < targetMethodParams.length; i++) {
-            LOG.info("ruleParam[{}]={}, targetParam[{}]={}", i, ruleParams[i], i, targetMethodParams[i].getName());
+            LOG.info("ruleParam[{}]={}, targetParam[{}]={}", i, ruleParams[i], i, targetMethodParams[i]);
 
-            if (!ruleParams[i].equals(targetMethodParams[i].getName())) {
+            if (!ruleParams[i].equals(targetMethodParams[i])) {
                 return false;
             }
         }
@@ -119,7 +134,7 @@ public class Transformer implements ClassFileTransformer {
                         if (rule.getlineNumber() == -1) {
                             if (rule.getStrategy().equals("logCutting")) {
                                 String insertedLine2 =
-                                    "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putEntry();";
+                                    "android.util.Log.w(\"CLODS\", \"" + rule.getId() + "\")";
                                 instrumentedMethod.insertBefore(insertedLine2);
                             } else if (rule.getStrategy().equals("stackTrace")) {
                                 String insertedLine3 = "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putStack();";

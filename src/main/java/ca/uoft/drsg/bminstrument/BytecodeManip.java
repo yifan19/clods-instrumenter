@@ -25,15 +25,20 @@ public class BytecodeManip {
     private String bufferVar = "buffer";
     private String bufferType = "Lca/uoft/drsg/bminstrument/buffer/LogEventBuffer;";
 
-    private String bufferClazz = "ca/uoft/drsg/bminstrument/buffer/LogEventBuffer";
-    private String putMethod = "put";
-    private String putMethodType = "(JJ)V";
+    private String bufferClazz = "android.util.Log";
+    private String putMethod = "w";
+    private String putMethodType = "(Ljava/lang/String;Ljava/lang/String;)I";
     
-    private String putLoopMethod = "putLoop";
-    private String putLoopMethodType = "(JJ)V";
+    private String putLoopMethod = "w";
+    private String putLoopMethodType = "(Ljava/lang/String;Ljava/lang/String;)I";
 
-    private String putObjectMethod = "putObject";
-    private String putObjectMethodType = "(Ljava/lang/Object;J)V";
+    private String putObjectMethod = "w";
+    private String putObjectMethodType = "(Ljava/lang/String;Ljava/lang/String;)I";
+
+
+    private String stringClass = "java.lang.String";
+    private String stringMethod = "valueOf";
+    private String stringMethodTypeLong = "(J)Ljava/lang/String;";
 
     private CtBehavior method;
     private CtClass clazz;
@@ -166,6 +171,22 @@ public class BytecodeManip {
             callPut(code);
             break;
 
+            case Opcode.ILOAD:
+            case Opcode.ILOAD_0:
+            case Opcode.ILOAD_1:
+            case Opcode.ILOAD_2:
+            case Opcode.ILOAD_3:
+            moveToAfterByteCode(ci);
+            grabValueDefault(code);
+            callPut(code);
+            break;
+
+            case Opcode.INVOKEVIRTUAL:
+            moveToAfterByteCode(ci);
+            grabValueObject(code);
+            callPut(code);
+            break;
+
             case Opcode.PUTFIELD:
             case Opcode.GETFIELD:
             String fullType = decodeFieldType(op, ci, index);
@@ -270,23 +291,20 @@ public class BytecodeManip {
 
     private void grabValueDefault(Bytecode code) {
         code.add(Bytecode.DUP);
-        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        // assume data is a java word (4 Bytes)
-        code.add(Bytecode.SWAP);
-        
         code.add(Bytecode.I2L);
+        code.addInvokestatic(stringClass, stringMethod, stringMethodTypeLong);
     }
     private void grabValueObject(Bytecode code) {
         code.add(Bytecode.DUP);
-        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         // assume data is a java word (4 Bytes)
-        code.add(Bytecode.SWAP);
+        // code.add(Bytecode.SWAP);
         // no converting the integer into long
     }
 
     private void grabValueLoop(Bytecode code) {
-        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        code.addLconst(rule.getLoopId());
+        // code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // code.addLconst(rule.getLoopId());
     }
 
     private void grabValueLocalVariableInteger(Bytecode code, int localVariableIndex) {
@@ -309,17 +327,21 @@ public class BytecodeManip {
     private void callPutObject(Bytecode code) {
         code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
-        code.addInvokevirtual(bufferClazz, putObjectMethod, putObjectMethodType);
+        code.addInvokestatic(bufferClazz, putObjectMethod, putObjectMethodType);
     }
     private void callPut(Bytecode code) {
-        code.addIconst(rule.getId());
-        code.add(Bytecode.I2L);
-        code.addInvokevirtual(bufferClazz, putMethod, putMethodType);
+
+        code.addLdc("CLODS/" + Integer.toString(rule.getId()) );
+        code.add(Bytecode.SWAP);
+        code.addInvokestatic(bufferClazz, putLoopMethod, putLoopMethodType);
+        code.add(Bytecode.POP);
+
     }
     private void callPutEntry(Bytecode code) {
-        code.addIconst(rule.getId());
-        code.add(Bytecode.I2L);
-        code.addInvokevirtual(bufferClazz, putLoopMethod, putLoopMethodType);
+        code.addLdc("CLODS");
+        code.addLdc(Integer.toString(rule.getId()));
+        code.addInvokestatic(bufferClazz, putLoopMethod, putLoopMethodType);
+        code.add(Bytecode.POP);
     }
 
 
