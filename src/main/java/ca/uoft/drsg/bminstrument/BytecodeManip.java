@@ -249,6 +249,18 @@ public class BytecodeManip {
             grabValueObject(code);
             callPutObject(code);
             break;
+            
+            case Opcode.ALOAD:
+            case Opcode.ALOAD_0:
+            case Opcode.ALOAD_1:
+            case Opcode.ALOAD_2:
+            case Opcode.ALOAD_3:
+            moveToAfterByteCode(ci);
+            grabValueObject(code);
+            callPutObject(code);
+            break;
+
+
 
             default:
             grabValueDefault(code);
