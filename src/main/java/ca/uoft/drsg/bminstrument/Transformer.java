@@ -71,9 +71,14 @@ public class Transformer implements ClassFileTransformer {
         Pattern pat = Pattern.compile(".*\\((.*)\\)", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pat.matcher(signature);
         String[] targetMethodParams;
+        int targetLen = 0;
         if (matcher.find()) {
             targetMethodParams = matcher.group(1).split(",");
-            System.out.println(matcher.group(1));
+            if (targetMethodParams[0].trim().equals("")) {
+                targetLen = 0;
+            } else { 
+            targetLen = targetMethodParams.length;
+            }
         } else {
             LOG.error("incorrect format received from the method long name");
             return false;
@@ -82,13 +87,13 @@ public class Transformer implements ClassFileTransformer {
         if (ruleParams == null) {
             return true;
         }
-        LOG.info("target={}, rulebook={}", targetMethodParams.length, ruleParams.length);
+        LOG.info("target={}, rulebook={}", targetLen, ruleParams.length);
 
-        if (targetMethodParams.length != ruleParams.length) {
+        if (targetLen != ruleParams.length) {
 
             return false;
         }
-        for (int i = 0; i < targetMethodParams.length; i++) {
+        for (int i = 0; i < targetLen; i++) {
             LOG.info("ruleParam[{}]={}, targetParam[{}]={}", i, ruleParams[i], i, targetMethodParams[i]);
 
             if (!ruleParams[i].equals(targetMethodParams[i])) {

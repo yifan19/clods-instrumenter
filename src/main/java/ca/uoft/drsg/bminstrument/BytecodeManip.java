@@ -40,6 +40,11 @@ public class BytecodeManip {
     private String stringMethod = "valueOf";
     private String stringMethodTypeLong = "(J)Ljava/lang/String;";
 
+    private String objectClass = "java.lang.Object";
+    private String hashCodeMethod = "hashCode";
+    private String hashCodeMethodType = "()I;";
+
+
     private CtBehavior method;
     private CtClass clazz;
     private Rule rule;
@@ -182,7 +187,9 @@ public class BytecodeManip {
             break;
 
             case Opcode.INVOKEVIRTUAL:
-            moveToAfterByteCode(ci);
+            if (!rule.getStrategy().equals("beforeSelfCall")) {
+                moveToAfterByteCode(ci);
+            }
             grabValueObject(code);
             callPut(code);
             break;
@@ -296,6 +303,9 @@ public class BytecodeManip {
     }
     private void grabValueObject(Bytecode code) {
         code.add(Bytecode.DUP);
+        code.addInvokevirtual(objectClass, hashCodeMethod, hashCodeMethodType);
+        code.add(Bytecode.I2L);
+        code.addInvokestatic(stringClass, stringMethod, stringMethodTypeLong);
         // code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         // assume data is a java word (4 Bytes)
         // code.add(Bytecode.SWAP);
@@ -325,9 +335,10 @@ public class BytecodeManip {
     }
 
     private void callPutObject(Bytecode code) {
-        code.addIconst(rule.getId());
-        code.add(Bytecode.I2L);
-        code.addInvokestatic(bufferClazz, putObjectMethod, putObjectMethodType);
+        code.addLdc("CLODS/" + Integer.toString(rule.getId()) );
+        code.add(Bytecode.SWAP);
+        code.addInvokestatic(bufferClazz, putLoopMethod, putLoopMethodType);
+        code.add(Bytecode.POP);
     }
     private void callPut(Bytecode code) {
 
