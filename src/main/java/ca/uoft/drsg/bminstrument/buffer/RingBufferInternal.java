@@ -4,6 +4,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
+
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +24,10 @@ public class RingBufferInternal<E extends DataPersistable> {
     private String dir;
     private int fileIndex;
     private boolean flush;
+
+    private HashMap<String, Long> stackTraceMap;
+    private long uniqueStackId;
+
     public RingBufferInternal(
         int initial_size, 
         String threadId, 
@@ -41,6 +49,9 @@ public class RingBufferInternal<E extends DataPersistable> {
         dir = dirPath;
         flush = flushToDisk;
         fileIndex = -1;
+
+        stackTraceMap = new HashMap<>();
+        uniqueStackId = 0;
     }
     public long flushToDisk_normal() {
         // System.out.println(dir);
@@ -79,6 +90,10 @@ public class RingBufferInternal<E extends DataPersistable> {
                         lastElementFlushed = finish - 1;
                         done = true;
                     }
+                    
+                    // flush the stacktrace map
+                    persistStackTrace(fos);
+
                     fos.close();
 
                 } catch (IOException e) {
@@ -123,7 +138,17 @@ public class RingBufferInternal<E extends DataPersistable> {
     //         }
     //     }
     // }
-
+    private void persistStackTrace(FileOutputStream fos) throws IOException {
+        for (Map.Entry<String, Long> set : stackTraceMap.entrySet()) {
+            // Printing all elements of a Map
+            ByteBuffer bf = ByteBuffer.allocate(8);
+            bf.putLong(set.getValue());
+            fos.write(bf.array());
+            String stacks = set.getKey();
+            fos.write(stacks.toString().getBytes());
+        }
+        stackTraceMap.clear();
+    }
     public E get(long seq) {
 
         int i = (int) (seq & mask);
@@ -151,5 +176,14 @@ public class RingBufferInternal<E extends DataPersistable> {
 
     public long getCursor() {
         return sequence;
+    }
+    public long getStackId(String s) {
+        Long res = stackTraceMap.get(s);
+        if (res == null) {
+            stackTraceMap.put(s, uniqueStackId);
+            res = uniqueStackId;
+            uniqueStackId++;
+        }
+        return res;
     }
 }

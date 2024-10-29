@@ -51,17 +51,24 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		// rb.get(seq).set(id, value);
 	}
 	
-	public void putStack() {
+	public void putStack(long id) {
 		// LOG.info("[BM] ID={}, {} ", id, value);
 		StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
 		System.out.println("[BM][Start Stack Trace][" + Thread.currentThread().getName() + "]");
+		StringBuilder sb = new StringBuilder();
 		for (int i = 2; i < stacks.length; i++) {
+			sb.append(stacks[i].toString());
+			sb.append('\n');
 			System.out.println(stacks[i].toString());
 		}
+		String stackString = sb.toString();
+		System.out.print(stackString);
 		System.out.println("[BM][End Stack Trace][" + Thread.currentThread().getName() + "]");
-		// RingBufferInternal<LogEvent> rb = getRingBuffer();
-		// long seq = rb.next();
-		// rb.get(seq).set(id, value);
+		RingBufferInternal<LogEvent> rb = getRingBuffer();
+		
+		long seq = rb.next();
+		long stack_id = rb.getStackId(stackString);
+		rb.get(seq).set(id, stack_id);
 	}
 
 

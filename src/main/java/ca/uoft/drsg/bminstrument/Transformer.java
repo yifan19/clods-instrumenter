@@ -122,7 +122,8 @@ public class Transformer implements ClassFileTransformer {
                                     "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putEntry();";
                                 instrumentedMethod.insertBefore(insertedLine2);
                             } else if (rule.getStrategy().equals("stackTrace")) {
-                                String insertedLine3 = "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putStack();";
+                                String insertedLine3 = "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putStack(" +
+                                    "(long)" + rule.getId() + ");";
                                 instrumentedMethod.insertBefore(insertedLine3);
 
                             } else {
