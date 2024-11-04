@@ -59,7 +59,7 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		for (int i = 2; i < stacks.length; i++) {
 			sb.append(stacks[i].toString());
 			sb.append('\n');
-			System.out.println(stacks[i].toString());
+			// System.out.println(stacks[i].toString());
 		}
 		String stackString = sb.toString();
 		System.out.print(stackString);
