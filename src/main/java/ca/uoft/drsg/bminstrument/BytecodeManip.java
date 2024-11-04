@@ -307,6 +307,30 @@ public class BytecodeManip {
         code.addIload(localVariableIndex);
         code.add(Bytecode.I2L);
     }
+    private void grabValueLocalVariable(Bytecode code, int localVariableIndex, char type) {
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+        // assume data is a java word (4 Bytes) 
+        switch(type) {  
+            case 'L': // for object
+            code.addAload(localVariableIndex);
+            break;
+            case 'J': // for long:
+            code.addLload(localVariableIndex);
+            break;
+            case 'D': //for double
+            code.addDload(localVariableIndex);
+            break;
+            case 'F':// for float:
+            code.addFload(localVariableIndex);
+            code.add(Bytecode.I2L);
+            break;
+            case 'I': // for int:
+            default:
+            code.addIload(localVariableIndex);
+            code.add(Bytecode.I2L);
+        }
+    }
+
     private void grabValue64(Bytecode code) {
         code.add(Bytecode.DUP2);
         // {DATA DATA} {DATA DATA}
@@ -352,13 +376,28 @@ public class BytecodeManip {
         return globalIndex; 
     }
 
-
-    private int findVariableIndex() {
+    public String findVariableType() {
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
         LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
+        int offset = findVariableOffset(localVariableAttribute);
+        if (offset == -1) {
+            return "";
+        }
+        return localVariableAttribute.descriptor(offset);
+    }
 
+    public int findVariableIndex() {
+        CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+        LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
+        int offset = findVariableOffset(localVariableAttribute);
+        if (offset == -1) {
+            return -1;
+        }
+        return localVariableAttribute.index(offset);
+    }
+
+    private int findVariableOffset(LocalVariableAttribute localVariableAttribute) {
         int n = localVariableAttribute.tableLength();
-        int localVariableIndex = -1;
         int i;
         for (i = 0; i < n; ++i) {
             int index = localVariableAttribute.index(i);
@@ -366,12 +405,12 @@ public class BytecodeManip {
                       index);
             String varName = localVariableAttribute.variableName(i);
             if (varName.equals(rule.getVariableName())) {
-                localVariableIndex = localVariableAttribute.index(i);
-                break;
+                return i;
             }
         }
-        return localVariableIndex;
+        return -1;
     }
+
     private int findInjectionLocation(LineNumberAttribute.Pc pc_start, LineNumberAttribute.Pc pc_end) {
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
         // LocalVariableAttribute localVariableAttribute = (LocalVariableAttribute) 
@@ -563,6 +602,7 @@ public class BytecodeManip {
         LOG.info(Mnemonic.OPCODE[op]);
 
         injectInstrumentation(op, ci, start_index, code);
+        LOG.info(code.getSize());
         // code.setMaxLocals(1);
 
 
@@ -595,7 +635,47 @@ public class BytecodeManip {
             e.printStackTrace();
         }
 
+    }
 
+    void logParameter() {
+        LOG.info("logging parameter: {}", rule.getVariableName());
+        ConstPool cPool = clazz.getClassFile().getConstPool();
+        CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+        CodeIterator ci = codeAttribute.iterator();
+        ci.move(0);
+        Bytecode code = new Bytecode(cPool);
+        
+        int variableIndex = findVariableIndex();
+        LOG.info("variable_index: {}", variableIndex);
+        String variableType = findVariableType();
+        char letterType = variableType.charAt(0);
+
+        grabValueLocalVariable(code, variableIndex, letterType);
+        switch(letterType) {
+            // Z //for boolean:
+            // B //for byte:
+            // S //for short:
+            // C //for char:
+            case 'L':
+            callPutObject(code);
+            break;
+            case 'J': // for long:
+            case 'D': //for double
+            case 'I': // for int:
+            case 'F':// for float:
+            default:
+            callPut(code);    
+        }
+        try {
+            ci.insert(code.get());
+            int old_stack = codeAttribute.getMaxStack();
+            int new_stack = codeAttribute.computeMaxStack();
+            if (old_stack < new_stack) {
+                LOG.info("stackSizeChange: {} -> {}", old_stack, new_stack);
+            }
+        } catch (BadBytecode e) {
+            e.printStackTrace();
+        }
     }
 
 }

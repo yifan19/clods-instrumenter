@@ -81,6 +81,7 @@ public class Protocol {
                 // "after" specifies we wish to print after a store
                 // (default) "before" specifies we wish to print before a load 
                 String strategyResult = prop.getProperty("strategy");
+                LOG.info("strategy used = " + strategyResult);
                 r.setStrategy(strategyResult);
             }
 
@@ -96,7 +97,7 @@ public class Protocol {
             }
 
 
-
+            LOG.info("details: " + prop);
             RuleBook.getInstance().add(r);
             return r;
 

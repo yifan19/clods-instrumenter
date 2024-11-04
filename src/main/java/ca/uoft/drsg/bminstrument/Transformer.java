@@ -127,8 +127,8 @@ public class Transformer implements ClassFileTransformer {
                                 instrumentedMethod.insertBefore(insertedLine3);
 
                             } else {
-                                instrumentedMethod.insertBefore(insertedLine);
-
+                                BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
+                                bcm.logParameter();
                             }
                         } else {
                         //     instrumentedMethod.insertAt(rule.getlineNumber(), 
