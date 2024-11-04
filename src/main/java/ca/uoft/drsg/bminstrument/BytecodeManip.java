@@ -183,6 +183,7 @@ public class BytecodeManip {
                 // B //for byte:
                 // S //for short:
                 // C //for char:
+                case '[':
                 case 'L':
                 grabValueObject(code);
                 callPutObject(code);
@@ -310,7 +311,8 @@ public class BytecodeManip {
     private void grabValueLocalVariable(Bytecode code, int localVariableIndex, char type) {
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         // assume data is a java word (4 Bytes) 
-        switch(type) {  
+        switch(type) {
+            case '[':
             case 'L': // for object
             code.addAload(localVariableIndex);
             break;
@@ -657,6 +659,7 @@ public class BytecodeManip {
             // S //for short:
             // C //for char:
             case 'L':
+            case '[':
             callPutObject(code);
             break;
             case 'J': // for long:
