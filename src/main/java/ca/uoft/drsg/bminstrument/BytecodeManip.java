@@ -262,13 +262,46 @@ public class BytecodeManip {
             case Opcode.ALOAD_1:
             case Opcode.ALOAD_2:
             case Opcode.ALOAD_3:
+            case Opcode.ACONST_NULL:
+
             moveToAfterByteCode(ci);
             grabValueObject(code);
             callPutObject(code);
             break;
-
-
-
+            case Opcode.LLOAD:
+            case Opcode.LLOAD_0:
+            case Opcode.LLOAD_1:
+            case Opcode.LLOAD_2:
+            case Opcode.LLOAD_3:
+            case Opcode.LCONST_0:
+            case Opcode.LCONST_1:
+            moveToAfterByteCode(ci);
+            grabValue64(code, false);
+            callPut(code);
+            case Opcode.DLOAD:
+            case Opcode.DLOAD_0:
+            case Opcode.DLOAD_1:            
+            case Opcode.DLOAD_2:
+            case Opcode.DLOAD_3:
+            case Opcode.DCONST_0:
+            case Opcode.DCONST_1:
+            moveToAfterByteCode(ci);
+            grabValue64(code, true);
+            callPut(code);
+            break;
+            case Opcode.ILOAD:
+            case Opcode.ILOAD_0:
+            case Opcode.ILOAD_1:
+            case Opcode.ILOAD_2:
+            case Opcode.ILOAD_3:
+            case Opcode.ICONST_M1:
+            case Opcode.ICONST_0:
+            case Opcode.ICONST_1:
+            case Opcode.ICONST_2:
+            case Opcode.ICONST_3:
+            case Opcode.ICONST_4:
+            case Opcode.ICONST_5:
+            moveToAfterByteCode(ci);
             default:
             grabValueDefault(code);
             callPut(code);
