@@ -172,7 +172,7 @@ public class BytecodeManip {
             char letterType = fullType.charAt(0);
             
             /* a putfield can store anything, depending on the field */
-            {
+            if (op == Opcode.GETFIELD) {
                 int new_index = moveToAfterByteCode(ci);
                 int new_op = ci.byteAt(new_index);
                 LOG.info("bci={}, {}",new_index, Mnemonic.OPCODE[new_op]);
