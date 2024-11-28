@@ -224,6 +224,7 @@ public class BytecodeManip {
 
             // case Opcode.ISTORE:
             case Opcode.LSTORE:
+            case Opcode.DSTORE:
             case Opcode.DSTORE_0:
             case Opcode.LSTORE_0:
             case Opcode.DSTORE_1:
