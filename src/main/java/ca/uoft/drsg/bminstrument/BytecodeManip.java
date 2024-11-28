@@ -189,8 +189,10 @@ public class BytecodeManip {
                 callPutObject(code);
                 break;
                 case 'J': // for long:
+                grabValue64(code, false);
+                callPut(code);
                 case 'D': //for double
-                grabValue64(code);
+                grabValue64(code, true);
                 callPut(code);
                 break;
                 case 'I': // for int:
@@ -224,21 +226,24 @@ public class BytecodeManip {
 
             // case Opcode.ISTORE:
             case Opcode.LSTORE:
+            case Opcode.LSTORE_0:
+            case Opcode.LSTORE_1:
+            case Opcode.LSTORE_2:
+            case Opcode.LSTORE_3:
+            case Opcode.LASTORE:
+            case Opcode.LRETURN:
+            grabValue64(code, false);
+            callPut(code);
+            break;
             case Opcode.DSTORE:
             case Opcode.DSTORE_0:
-            case Opcode.LSTORE_0:
             case Opcode.DSTORE_1:
-            case Opcode.LSTORE_1:
             case Opcode.DSTORE_2:
-            case Opcode.LSTORE_2:
             case Opcode.DSTORE_3:
-            case Opcode.LSTORE_3:
             // reading a long or a double from array
-            case Opcode.LASTORE:
             case Opcode.DASTORE:
-            case Opcode.LRETURN:
             case Opcode.DRETURN:
-            grabValue64(code);
+            grabValue64(code, true);
             callPut(code);
             break;
 
@@ -334,15 +339,16 @@ public class BytecodeManip {
         }
     }
 
-    private void grabValue64(Bytecode code) {
+    private void grabValue64(Bytecode code, boolean isDouble) {
         code.add(Bytecode.DUP2);
-        // {DATA DATA} {DATA DATA}
+        if (isDouble) {
+            code.add(Bytecode.D2L);
+        }
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
-        // {DATA DATA} {DATA DATA} STATIC
+        // {DATA DATA} STATIC
         code.add(Bytecode.DUP_X2);
-        // {DATA DATA} STATIC {DATA DATA} STATIC
+        // STATIC {DATA DATA} STATIC
         code.add(Bytecode.POP);
-        // {DATA DATA} STATIC {DATA DATA}
     }
 
     private void callPutObject(Bytecode code) {
