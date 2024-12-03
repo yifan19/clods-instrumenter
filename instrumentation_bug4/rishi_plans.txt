@@ -1,0 +1,53 @@
+Deserialized message: instrumentationRules {
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 443
+  byteCodeIndex: 61
+}
+instrumentationRules {
+  id: 1
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 443
+  byteCodeIndex: 61
+}
+instrumentationRules {
+  id: 2
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 437
+  byteCodeIndex: 48
+}
+instrumentationRules {
+  id: 3
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 433
+  byteCodeIndex: 29
+}
+instrumentationRules {
+  id: 4
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 437
+  byteCodeIndex: 48
+}
+instrumentationRules {
+  id: 5
+  className: "org.apache.cassandra.db.Columns"
+  methodName: "deserialize"
+  parameterTypes: "org.apache.cassandra.io.util.DataInputPlus"
+  parameterTypes: "org.apache.cassandra.config.CFMetaData"
+  lineNumber: 433
+  byteCodeIndex: 29
+}

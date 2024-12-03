@@ -1,0 +1,2023 @@
+[BM][Start Stack Trace][IPC Server handler 3 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:359)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.create(NameNodeRpcServer.java:718)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.create(ClientNamenodeProtocolServerSideTranslatorPB.java:410)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 3 on 9000]
+[BM][IPC Server handler 3 on 9000]ID=1,loop=0
+[BM][IPC Server handler 3 on 9000]ID=0,loop=0
+[BM][IPC Server handler 3 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:160)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:161)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:211)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:212)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.isValidBlock(SequentialBlockIdGenerator.java:65)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.nextValue(SequentialBlockIdGenerator.java:55)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockIdManager.nextBlockId(BlockIdManager.java:191)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.nextBlockId(FSNamesystem.java:5428)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.createNewBlock(FSNamesystem.java:2681)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:236)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.addBlockCollection(BlocksMap.java:98)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlockCollection(BlockManager.java:3660)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.addBlock(FSDirWriteFileOp.java:456)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.saveAllocatedBlock(FSDirWriteFileOp.java:706)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:238)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:600)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:621)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.commitOrCompleteLastBlock(BlockManager.java:744)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.commitOrCompleteLastBlock(FSNamesystem.java:3298)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:649)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getBlockCollection(FSNamesystem.java:3388)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getBlockCollection(FSNamesystem.java:3383)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.updateSpaceForCompleteBlock(FSDirectory.java:893)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.convertToCompleteBlock(BlockManager.java:828)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.completeBlock(BlockManager.java:802)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2715)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,16388
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.updateNeededReplications(BlockManager.java:3530)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2742)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3259)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741825
+[BM][Start Stack Trace][IPC Server handler 3 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:600)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 3 on 9000]
+[BM][IPC Server handler 3 on 9000]ID=1,loop=0
+[BM][IPC Server handler 3 on 9000]ID=0,loop=0
+[BM][IPC Server handler 3 on 9000]ID=4,loop=0
+[BM][IPC Server handler 3 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 3 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:621)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 3 on 9000]
+[BM][IPC Server handler 3 on 9000]ID=1,loop=0
+[BM][IPC Server handler 3 on 9000]ID=0,loop=0
+[BM][IPC Server handler 3 on 9000]ID=4,loop=0
+[BM][IPC Server handler 3 on 9000]ID=7,16388
+[BM][Start Stack Trace][IPC Server handler 3 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.checkReplication(BlockManager.java:3558)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.finalizeINodeFileUnderConstruction(FSNamesystem.java:3341)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:657)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 3 on 9000]
+[BM][IPC Server handler 3 on 9000]ID=1,loop=0
+[BM][IPC Server handler 3 on 9000]ID=0,loop=0
+[BM][IPC Server handler 3 on 9000]ID=4,loop=0
+[BM][IPC Server handler 3 on 9000]ID=7,1073741825
+[BM][Start Stack Trace][IPC Server handler 7 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:349)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.rename(NameNodeRpcServer.java:955)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.rename(ClientNamenodeProtocolServerSideTranslatorPB.java:591)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 7 on 9000]
+[BM][IPC Server handler 7 on 9000]ID=1,loop=0
+[BM][IPC Server handler 7 on 9000]ID=0,loop=0
+[BM][IPC Server handler 7 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 7 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:359)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.create(NameNodeRpcServer.java:718)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.create(ClientNamenodeProtocolServerSideTranslatorPB.java:410)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 7 on 9000]
+[BM][IPC Server handler 7 on 9000]ID=1,loop=0
+[BM][IPC Server handler 7 on 9000]ID=0,loop=0
+[BM][IPC Server handler 7 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:160)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=4,loop=0
+[BM][IPC Server handler 1 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:161)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=4,loop=0
+[BM][IPC Server handler 1 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:211)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=4,loop=0
+[BM][IPC Server handler 1 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+04:54:35.092 [org.apache.hadoop.util.JvmPauseMonitor$Monitor@7b02881e] INFO  ca.uoft.drsg.bminstrument.Transformer - loader: sun.misc.Launcher$AppClassLoader@2e817b38; className: com/google/common/base/Predicates$InPredicate
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:212)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=4,loop=0
+[BM][IPC Server handler 1 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.isValidBlock(SequentialBlockIdGenerator.java:65)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.nextValue(SequentialBlockIdGenerator.java:55)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockIdManager.nextBlockId(BlockIdManager.java:191)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.nextBlockId(FSNamesystem.java:5428)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.createNewBlock(FSNamesystem.java:2681)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:236)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 1 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.addBlockCollection(BlocksMap.java:98)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlockCollection(BlockManager.java:3660)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.addBlock(FSDirWriteFileOp.java:456)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.saveAllocatedBlock(FSDirWriteFileOp.java:706)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:238)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 1 on 9000]
+[BM][IPC Server handler 1 on 9000]ID=1,loop=0
+[BM][IPC Server handler 1 on 9000]ID=0,loop=0
+[BM][IPC Server handler 1 on 9000]ID=2,0
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741826
+[BM][Start Stack Trace][IPC Server handler 9 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:600)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 9 on 9000]
+[BM][IPC Server handler 9 on 9000]ID=1,loop=0
+[BM][IPC Server handler 9 on 9000]ID=0,loop=0
+[BM][IPC Server handler 9 on 9000]ID=4,loop=0
+[BM][IPC Server handler 9 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 9 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:621)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 9 on 9000]
+[BM][IPC Server handler 9 on 9000]ID=1,loop=0
+[BM][IPC Server handler 9 on 9000]ID=0,loop=0
+[BM][IPC Server handler 9 on 9000]ID=4,loop=0
+[BM][IPC Server handler 9 on 9000]ID=7,16391
+[BM][Start Stack Trace][IPC Server handler 9 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.commitOrCompleteLastBlock(BlockManager.java:744)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.commitOrCompleteLastBlock(FSNamesystem.java:3298)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:649)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 9 on 9000]
+[BM][IPC Server handler 9 on 9000]ID=1,loop=0
+[BM][IPC Server handler 9 on 9000]ID=0,loop=0
+[BM][IPC Server handler 9 on 9000]ID=4,loop=0
+[BM][IPC Server handler 9 on 9000]ID=7,1073741826
+[BM][Start Stack Trace][IPC Server handler 9 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.checkReplication(BlockManager.java:3558)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.finalizeINodeFileUnderConstruction(FSNamesystem.java:3341)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:657)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 9 on 9000]
+[BM][IPC Server handler 9 on 9000]ID=1,loop=0
+[BM][IPC Server handler 9 on 9000]ID=0,loop=0
+[BM][IPC Server handler 9 on 9000]ID=4,loop=0
+[BM][IPC Server handler 9 on 9000]ID=7,1073741826
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:349)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.rename(NameNodeRpcServer.java:955)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.rename(ClientNamenodeProtocolServerSideTranslatorPB.java:591)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 5 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:359)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.create(NameNodeRpcServer.java:718)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.create(ClientNamenodeProtocolServerSideTranslatorPB.java:410)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 5 on 9000]
+[BM][IPC Server handler 5 on 9000]ID=1,loop=0
+[BM][IPC Server handler 5 on 9000]ID=0,loop=0
+[BM][IPC Server handler 5 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:160)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:161)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:211)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:212)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.isValidBlock(SequentialBlockIdGenerator.java:65)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.nextValue(SequentialBlockIdGenerator.java:55)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockIdManager.nextBlockId(BlockIdManager.java:191)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.nextBlockId(FSNamesystem.java:5428)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.createNewBlock(FSNamesystem.java:2681)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:236)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.addBlockCollection(BlocksMap.java:98)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlockCollection(BlockManager.java:3660)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.addBlock(FSDirWriteFileOp.java:456)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.saveAllocatedBlock(FSDirWriteFileOp.java:706)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:238)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=2,0
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741827
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:600)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:621)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16394
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.commitOrCompleteLastBlock(BlockManager.java:744)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.commitOrCompleteLastBlock(FSNamesystem.java:3298)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:649)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,1073741827
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.checkReplication(BlockManager.java:3558)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.finalizeINodeFileUnderConstruction(FSNamesystem.java:3341)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:657)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,1073741827
+[BM][Start Stack Trace][IPC Server handler 7 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:349)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.rename(NameNodeRpcServer.java:955)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.rename(ClientNamenodeProtocolServerSideTranslatorPB.java:591)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 7 on 9000]
+[BM][IPC Server handler 7 on 9000]ID=1,loop=0
+[BM][IPC Server handler 7 on 9000]ID=0,loop=0
+[BM][IPC Server handler 7 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 8 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:359)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.create(NameNodeRpcServer.java:718)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.create(ClientNamenodeProtocolServerSideTranslatorPB.java:410)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 8 on 9000]
+[BM][IPC Server handler 8 on 9000]ID=1,loop=0
+[BM][IPC Server handler 8 on 9000]ID=0,loop=0
+[BM][IPC Server handler 8 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:160)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.validateAddBlock(FSDirWriteFileOp.java:161)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2503)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:211)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.analyzeFileState(FSDirWriteFileOp.java:521)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:212)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=4,loop=0
+[BM][IPC Server handler 0 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.isValidBlock(SequentialBlockIdGenerator.java:65)
+org.apache.hadoop.hdfs.server.blockmanagement.SequentialBlockIdGenerator.nextValue(SequentialBlockIdGenerator.java:55)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockIdManager.nextBlockId(BlockIdManager.java:191)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.nextBlockId(FSNamesystem.java:5428)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.createNewBlock(FSNamesystem.java:2681)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:236)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=2,0
+[BM][Start Stack Trace][IPC Server handler 0 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.addBlockCollection(BlocksMap.java:98)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlockCollection(BlockManager.java:3660)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.addBlock(FSDirWriteFileOp.java:456)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.saveAllocatedBlock(FSDirWriteFileOp.java:706)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.storeAllocatedBlock(FSDirWriteFileOp.java:238)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2523)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.addBlock(NameNodeRpcServer.java:828)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.addBlock(ClientNamenodeProtocolServerSideTranslatorPB.java:507)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 0 on 9000]
+[BM][IPC Server handler 0 on 9000]ID=1,loop=0
+[BM][IPC Server handler 0 on 9000]ID=0,loop=0
+[BM][IPC Server handler 0 on 9000]ID=2,0
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.getStoredBlock(BlockManager.java:3512)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3227)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processReportedBlock(BlockManager.java:2374)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3247)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStoredBlock(BlocksMap.java:128)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2666)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][Block report processor]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlock(BlockManager.java:2707)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addStoredBlockUnderConstruction(BlockManager.java:2609)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processAndHandleReportedBlock(BlockManager.java:3255)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.addBlock(BlockManager.java:3232)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3325)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.processIncrementalBlockReport(BlockManager.java:3294)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.processIncrementalBlockReport(FSNamesystem.java:5108)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer$2.run(NameNodeRpcServer.java:1478)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.processQueue(BlockManager.java:4018)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager$BlockReportProcessingThread.run(BlockManager.java:3997)
+[BM][End Stack Trace][Block report processor]
+[BM][Block report processor]ID=1,loop=0
+[BM][Block report processor]ID=0,loop=0
+[BM][Block report processor]ID=4,loop=0
+[BM][Block report processor]ID=7,1073741828
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:564)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:600)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.namenode.INodeMap.get(INodeMap.java:132)
+org.apache.hadoop.hdfs.server.namenode.FSDirectory.getInode(FSDirectory.java:1272)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.isFileDeleted(FSNamesystem.java:5436)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkLease(FSNamesystem.java:2637)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:621)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,16397
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.commitOrCompleteLastBlock(BlockManager.java:744)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.commitOrCompleteLastBlock(FSNamesystem.java:3298)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:649)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,1073741828
+[BM][Start Stack Trace][IPC Server handler 4 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.hdfs.server.blockmanagement.BlocksMap.getStorages(BlocksMap.java:136)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.countNodes(BlockManager.java:3362)
+org.apache.hadoop.hdfs.server.blockmanagement.BlockManager.checkReplication(BlockManager.java:3558)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.finalizeINodeFileUnderConstruction(FSNamesystem.java:3341)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFileInternal(FSDirWriteFileOp.java:657)
+org.apache.hadoop.hdfs.server.namenode.FSDirWriteFileOp.completeFile(FSDirWriteFileOp.java:601)
+org.apache.hadoop.hdfs.server.namenode.FSNamesystem.completeFile(FSNamesystem.java:2667)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.complete(NameNodeRpcServer.java:881)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.complete(ClientNamenodeProtocolServerSideTranslatorPB.java:553)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 4 on 9000]
+[BM][IPC Server handler 4 on 9000]ID=1,loop=0
+[BM][IPC Server handler 4 on 9000]ID=0,loop=0
+[BM][IPC Server handler 4 on 9000]ID=4,loop=0
+[BM][IPC Server handler 4 on 9000]ID=7,1073741828
+[BM][Start Stack Trace][IPC Server handler 2 on 9000]
+org.apache.hadoop.util.LightWeightGSet.get(LightWeightGSet.java)
+org.apache.hadoop.util.LightWeightCache.get(LightWeightCache.java:186)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:263)
+org.apache.hadoop.ipc.RetryCache.waitForCompletion(RetryCache.java:349)
+org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.rename(NameNodeRpcServer.java:955)
+org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.rename(ClientNamenodeProtocolServerSideTranslatorPB.java:591)
+org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:447)
+org.apache.hadoop.ipc.RPC$Server.call(RPC.java:989)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:847)
+org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:790)
+java.security.AccessController.doPrivileged(Native Method)
+javax.security.auth.Subject.doAs(Subject.java:422)
+org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1836)
+org.apache.hadoop.ipc.Server$Handler.run(Server.java:2486)
+[BM][End Stack Trace][IPC Server handler 2 on 9000]
+[BM][IPC Server handler 2 on 9000]ID=1,loop=0
+[BM][IPC Server handler 2 on 9000]ID=0,loop=0
+[BM][IPC Server handler 2 on 9000]ID=2,0

@@ -1,0 +1,35 @@
+// constructor shouldRun=true
+instrumentationRules {
+  id: 1
+  className: "org.apache.hadoop.hdfs.server.datanode.DataNode"
+  methodName: "DataNode"
+  parameterTypes: "org.apache.hadoop.conf.Configuration"
+  parameterTypes: "java.util.AbstractList"
+  parameterTypes: "org.apache.hadoop.hdfs.server.protocol.DatanodeProtocol"
+  parameterTypes: "org.apache.hadoop.hdfs.server.datanode.SecureDataNodeStarter$SecureResources"
+  lineNumber: 202
+}
+// shutdown shouldRun=false
+instrumentationRules {
+  id: 8
+  className: "org.apache.hadoop.hdfs.server.datanode.DataNode"
+  methodName: "shutdown"
+  lineNumber: 788
+}
+// Dominating condition for handleDiskError shouldRun=false
+instrumentationRules {
+  id: 16
+  className: "org.apache.hadoop.hdfs.server.datanode.DataNode"
+  methodName: "handleDiskError"
+  parameterTypes: "java.lang.String"
+  lineNumber: 897
+  byteCodeIndex: 101
+}
+// handleDiskError shouldRun=false
+instrumentationRules {
+  id: 39
+  className: "org.apache.hadoop.hdfs.server.datanode.DataNode"
+  methodName: "handleDiskError"
+  parameterTypes: "java.lang.String"
+  lineNumber: 903
+}

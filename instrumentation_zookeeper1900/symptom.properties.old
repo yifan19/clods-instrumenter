@@ -1,0 +1,8 @@
+ID=1111
+className=org.apache.zookeeper.ZooKeeper$1
+methodName=checkIfParentQuota
+parameterTypes=org.apache.zookeeper.ZooKeeper,java.lang.String
+strategy=conditional
+lineNumber=748
+byteCodeIndex=1239
+variableName=foo
