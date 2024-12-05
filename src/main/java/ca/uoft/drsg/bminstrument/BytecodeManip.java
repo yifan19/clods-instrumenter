@@ -191,6 +191,7 @@ public class BytecodeManip {
                 case 'J': // for long:
                 grabValue64(code, false);
                 callPut(code);
+                break;
                 case 'D': //for double
                 grabValue64(code, true);
                 callPut(code);
