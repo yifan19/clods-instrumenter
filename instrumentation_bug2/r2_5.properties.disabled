@@ -1,8 +1,8 @@
-ID=2
+ID=5
 className=org.apache.hadoop.util.LightWeightGSet
-methodName=put
-parameterTypes=java.lang.Object
+methodName=LightWeightGSet
+parameterTypes=int
 lineNumber=ENTRY
 byteCodeIndex=-1
-variableName=element
+variableName=key
 strategy=before
