@@ -17,7 +17,7 @@ public class ListenerTest {
   public void testStartListener() { 
     String[] cmd = {"foo"};
     Listener t1 = new Listener(8089);    
-    PseudoClient c1 = new PseudoClient("localhost", 8089, cmd);
+    PseudoClient c1 = new PseudoClient("localhost", 8089, cmd, false);
     t1.start();
     try {
       Thread.sleep(500);
@@ -40,7 +40,7 @@ public class ListenerTest {
   public void testSendRequest() {
     String[] cmd = {"hello", "bye"};
     Listener t1 = new Listener(8088);
-    PseudoClient c1 = new PseudoClient("localhost", 8088, cmd);
+    PseudoClient c1 = new PseudoClient("localhost", 8088, cmd, false);
 
     t1.start();
     try {
