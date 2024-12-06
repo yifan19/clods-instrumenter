@@ -1,6 +1,6 @@
-HADOOP_HOME=/home/ubuntu/hadoop
-reportdir=hadoop-hdfs-project/hadoop-hdfs/target/surefire-reports
-logfile=$reportdir/org.apache.hadoop.hdfs.server.blockmanagement.TestPendingReplication-output.txt
+HADOOP_HOME=$(pwd)
+reportdir=target/surefire-reports
+logfile=$reportdir/org.apache.hadoop.hbase.regionserver.TestSplitTransactionOnCluster-output.txt
 instrumentation_plan_dir=/home/ubuntu/plans2/
 
 myinstrumentation_jar=/home/ubuntu/bm_instrument/target/uber-blameMasterInstrument-1.0.jar
@@ -17,7 +17,7 @@ cd -
 
 cd $HADOOP_HOME
 rm $reportdir/*
-mvn test '-Dtest=TestPendingReplication#testProcessPendingReplications' > /dev/null & 
+mvn test '-Dtest=TestSplitTransactionOnCluster' > /dev/null & 
 mvn_pid=$!
 
 while ! test -f "$logfile"
