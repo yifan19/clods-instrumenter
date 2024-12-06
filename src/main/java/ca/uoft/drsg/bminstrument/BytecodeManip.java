@@ -142,6 +142,15 @@ public class BytecodeManip {
 
         return variableIndex;
     }
+    private String decodeFunctionReturnType(CodeIterator ci, int index) {
+        int globalIndex = ci.s16bitAt(index + 1);
+        ConstPool constPool = clazz.getClassFile2().getConstPool();
+        String signature = constPool.getMethodrefType(globalIndex);
+        LOG.info("signature = " + signature);
+        return signature;
+    }
+
+
     private String decodeFieldType(int op, CodeIterator ci, int index) {
         int globalIndex = ci.s16bitAt(index + 1);
         ConstPool constPool = clazz.getClassFile2().getConstPool();
@@ -164,6 +173,47 @@ public class BytecodeManip {
             moveToAfterByteCode(ci);
             grabValueLocalVariableInteger(code, variableIndex);
             callPut(code);
+            break;
+
+
+            case Opcode.INVOKEINTERFACE:
+            case Opcode.INVOKESTATIC:
+            case Opcode.INVOKESPECIAL:
+            case Opcode.INVOKEDYNAMIC:
+            case Opcode.INVOKEVIRTUAL:
+
+            String returnSignature = decodeFunctionReturnType(ci, index);
+            if (rule.getStrategy().equals("beforeSelfCall")) {
+                grabValueObject(code);
+                callPut(code);
+            } else {
+                moveToAfterByteCode(ci);
+                switch(returnSignature.charAt(returnSignature.length() - 1)) {
+                // Z //for boolean:
+                // B //for byte:
+                // S //for short:
+                // C //for char:
+                case 'L':
+                case ';':
+                grabValueObject(code);
+                callPutObject(code);
+                break;
+                case 'J': // for long:
+                grabValue64(code, false);
+                callPut(code);
+                break;
+                case 'D': //for double
+                grabValue64(code, true);
+                callPut(code);
+                break;
+                case 'I': // for int:
+                case 'F':// for float:
+                default: // other
+                grabValueDefault(code);
+                callPut(code);
+                break;
+            }
+            }
             break;
 
             case Opcode.PUTFIELD:
