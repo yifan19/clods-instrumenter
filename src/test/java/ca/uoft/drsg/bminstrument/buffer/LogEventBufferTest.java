@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,19 +63,19 @@ public class LogEventBufferTest {
   public void testBasic() {
     
     lb.put(1, 0);
-    long res[] = lb.collectData();
-    assertEquals(1, res.length);
-    assertEquals(0, res[0]);
+    List<Long> res = lb.collectData();
+    assertEquals(1, res.size());
+    assertEquals(0, res.get(0));
   }
 
   @Test
   public void testBasicMultipleWorker() {
     
     startDummies(10, 1);
-    long res[] = lb.collectData();
-    assertEquals(10, res.length);
+    List<Long> res = lb.collectData();
+    assertEquals(10, res.size());
     for (int i = 0; i < 10; i++) {
-      assertEquals(0, res[i]);
+      assertEquals(0, res.get(i));
     }
   }
 
@@ -82,8 +83,8 @@ public class LogEventBufferTest {
   public void testFlush() {
     
     startDummies(10, 10);
-    long res[] = lb.collectData();
-    assertEquals(10, res.length);
+    List<Long> res = lb.collectData();
+    assertEquals(10, res.size());
     for (int i = 0; i < 10; i++) {
       assertTrue(FileUtil.fileExists("worker" + i + "_0", dirPath));
     }

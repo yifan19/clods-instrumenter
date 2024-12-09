@@ -45,10 +45,11 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		// LOG.info("[BM] ID={}, {} ", id, value);
 		StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
 		StackTraceElement entry = stacks[2];
-		System.out.println("[BM][" + Thread.currentThread().getName() + "][Method Entry]" + entry.toString());
-		// RingBufferInternal<LogEvent> rb = getRingBuffer();
-		// long seq = rb.next();
-		// rb.get(seq).set(id, value);
+		long currentTimeMillis = System.currentTimeMillis();
+		System.out.println("[BM][" + Thread.currentThread().getName() + "][" + id + "]" + entry.toString() + '@' + currentTimeMillis);
+		RingBufferInternal<LogEvent> rb = getRingBuffer();
+		long seq = rb.next();
+		rb.get(seq).set(id, currentTimeMillis);
 	}
 	
 	public void putStack(long id) {

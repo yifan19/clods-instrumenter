@@ -91,7 +91,7 @@ public class Transformer implements ClassFileTransformer {
         byte[] byteCode = classfileBuffer;
 		String classNameSlash = classRules.getClassName().replace(".", "/");
 
-		LOG.info("loader: " + loader + "; " + "className: " + className);
+		// LOG.info("loader: " + loader + "; " + "className: " + className);
 		// byte[] toAdd = new byte[] {(byte) 0xb2, 0x00, 0x05, 0x04, (byte) 0x60, (byte) 0xb3, 0x00,0x05};
 
 		//Add instrumentation to Sample class alone
@@ -145,9 +145,9 @@ public class Transformer implements ClassFileTransformer {
                 }
                 byteCode = ctClass.toBytecode();
                         
-                try (FileOutputStream fos = new FileOutputStream("/data/new" + classRules.getClassName() + ".class")) {
-                    fos.write(byteCode);
-                }
+//                try (FileOutputStream fos = new FileOutputStream("/data/new" + classRules.getClassName() + ".class")) {
+//                    fos.write(byteCode);
+//                }
 
                 ctClass.detach();
 

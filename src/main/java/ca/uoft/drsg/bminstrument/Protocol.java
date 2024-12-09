@@ -2,6 +2,7 @@ package ca.uoft.drsg.bminstrument;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -130,9 +131,14 @@ public class Protocol {
     private String processCollect() {
         LOG.info(" " + predicate);
         if (InstrumentationAgent.buffer != null) {
-            long result[] = InstrumentationAgent.buffer.collectData();
+            List<Long> result = InstrumentationAgent.buffer.collectData();
             LOG.info(result);
-            return "OK" + result;
+            String output = "";
+            for (int i = 0; i < result.size(); i++) {
+                output += Long.toString(result.get(i));
+                output += " ";
+            }
+            return "OK" + output;
         }
         return "FAIL";
 

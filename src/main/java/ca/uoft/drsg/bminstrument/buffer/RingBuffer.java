@@ -2,7 +2,8 @@ package ca.uoft.drsg.bminstrument.buffer;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
+import java.util.List;
+import java.util.ArrayList;
 public class RingBuffer<T extends DataPersistable>
 {
     private final ConcurrentLinkedQueue<RingBufferInternal<T>> headBuffer;
@@ -44,16 +45,15 @@ public class RingBuffer<T extends DataPersistable>
     
     /* returns the last sequence flushed */
     /* will force flush everytime */
-    public long[] collectData() {
-        long[] result = new long[headBuffer.size()];
+    public List<Long> collectData() {
+        List<Long> result = new ArrayList<>();
         int i = 0;
         for (RingBufferInternal<T> r: headBuffer) {
             long last_index = r.flushToDisk_normal();
-            result[i] = last_index;
+            result.add(last_index);
             i++;
         }
         return result;
-
     }
 
     public RingBufferInternal<T> getRingBuffer()
@@ -65,7 +65,7 @@ public class RingBuffer<T extends DataPersistable>
         {
             ringBuffer = new RingBufferInternal<T>(
                 ringBufferSize,
-                Thread.currentThread().getName(),
+                Long.toString(tid),
                 dirPath,
                 eventFactory,
                 flushToDisk

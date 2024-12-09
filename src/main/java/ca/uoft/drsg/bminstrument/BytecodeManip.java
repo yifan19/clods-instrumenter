@@ -166,6 +166,12 @@ public class BytecodeManip {
             callPutEntry(code);
             return;
         }
+        if (rule.getStrategy().equals("logCutting")){
+            grabNoValue(code);
+            callPutCut(code);
+            return;
+        }
+
 
         switch(op) {
             case Opcode.IINC:
@@ -391,6 +397,10 @@ public class BytecodeManip {
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         code.addLconst(rule.getLoopId());
     }
+    private void grabNoValue(Bytecode code) {
+        code.addGetstatic(instAgentClazz, bufferVar, bufferType);
+
+    }
 
     private void grabValueLocalVariableInteger(Bytecode code, int localVariableIndex) {
         code.addGetstatic(instAgentClazz, bufferVar, bufferType);
@@ -449,6 +459,11 @@ public class BytecodeManip {
         code.addIconst(rule.getId());
         code.add(Bytecode.I2L);
         code.addInvokevirtual(bufferClazz, putLoopMethod, putLoopMethodType);
+    }
+    private void callPutCut(Bytecode code) {
+        code.addIconst(rule.getId());
+        code.add(Bytecode.I2L);
+        code.addInvokevirtual(bufferClazz, "putEntry", "(J)V");
     }
 
 

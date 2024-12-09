@@ -46,6 +46,7 @@ public class PseudoClient extends Thread {
                     out.println(cmd);
                     String response = in.readLine();
                     LOG.info("adding response:" + response);
+		    System.out.println(response);
                     results.add(response);
                 }
             } else {
