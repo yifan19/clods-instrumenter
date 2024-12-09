@@ -41,7 +41,7 @@ public class LogEventBuffer extends RingBuffer<LogEvent>
 		rb.get(seq).set(id, value);
 	}
 
-	public void putEntry() {
+	public void putEntry(int id) {
 		// LOG.info("[BM] ID={}, {} ", id, value);
 		StackTraceElement[] stacks = Thread.currentThread().getStackTrace();
 		StackTraceElement entry = stacks[2];
