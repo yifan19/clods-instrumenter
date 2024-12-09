@@ -5,13 +5,13 @@ import zipfile
 import re
 import constants
 from pathlib import Path
-OP_LIST=[]
+
 def extract_class_files(jar_file, output_dir):
     """Extract all class files from the jar."""
     with zipfile.ZipFile(jar_file, 'r') as jar:
         jar.extractall(output_dir)
 
-def parse_bytecode(class_file):
+def parse_bytecode(inst_id, class_file):
     """Parse bytecode using javap and extract basic blocks."""
     try:
         # Use javap to disassemble the class file
@@ -50,20 +50,23 @@ def parse_bytecode(class_file):
                     #constructor
                     method_name = method_name.split('.')[-1]
                 print(method_name)
+                inst_id += 1
+                basic_blocks.append((inst_id, class_name, method_name, param, "-1", "ENTRY", "logCutting"))
+                inst_id +=1
             else:
                 method_name = None
         if line.startswith('LineNumberTable'):
             method_name = None
         # Detect bytecode jump instructions
-        if method_name and any(op in line for op in constants.OP_LIST):
+        if method_name and any(op in line for op in constants.RET_LIST):
             if class_name is None:
                 print(javap_output)
                 print(f'method_name = {method_name}')
                 exit(1)
             if part :=  re.search(r'^(\d+):.*', line):
                 bci = int(part.groups()[0])
-                basic_blocks.append((class_name, method_name, param, bci, line))
-    return basic_blocks
+                basic_blocks.append((inst_id, class_name, method_name, param, bci, '100', "logCutting"))
+    return inst_id,basic_blocks
 
 def main(jar_file, filter_kw, output):
     temp_dir = "tmp"
@@ -72,31 +75,36 @@ def main(jar_file, filter_kw, output):
     # Step 1: Extract class files
     print(f"Extracting {jar_file}...")
     extract_class_files(jar_file, temp_dir)
-
+    inst_id = 0
     # Step 2: Process each class file
     all_blocks = []
+    class_count = 0
     for root, _, files in os.walk(temp_dir):
         for file in files:
             if file.endswith(".class"):
                 class_file_path = os.path.join(root, file)
                 if filter_kw and any(re.search(f, class_file_path) for f in filter_kw):
+                    class_count +=1
                     print(f"Processing {class_file_path}...")
-                    basic_blocks = parse_bytecode(class_file_path)
+                    inst_id, basic_blocks = parse_bytecode(inst_id, class_file_path)
                     all_blocks.extend(basic_blocks)
-
-
+    
     for i, b in enumerate(all_blocks):
         r = {
-            'id': i,
-            'class_name': b[0],
-            'method_name': b[1],
-            'params': b[2],
-            'bci': b[3],
+            'id': b[0],
+            'class_name': b[1],
+            'method_name': b[2],
+            'params': b[3],
+            'bci': b[4],
+            'line_number': b[5],
+            'strategy': b[6],
         }
-        plan = constants.TEMPLATE.format(**r)
+        plan = constants.HUBBLE_TEMPLATE.format(**r)
         # print(plan)
-        with open(f'/home/ubuntu/plans2/{i}.properties', 'w') as f:
+        with open(f'/home/ubuntu/plans_hubble/{i}.properties', 'w') as f:
             f.write(plan)
+    
+    print(f'stats {class_count}, {len(all_blocks)}')
     # Step 3: Cleanup temporary files
     # print(f"Cleaning up temporary files...")
     # for root, dirs, files in os.walk(temp_dir):

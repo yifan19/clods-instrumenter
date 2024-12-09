@@ -37,6 +37,19 @@ OP_LIST = [
 'return',
 ]
 
+RET_LIST = [
+'ireturn', #: Return an integer.
+'lreturn', #: Return a long.
+'freturn', #: Return a float.
+'dreturn', #: Return a double.
+'areturn', #: Return an object or array reference.
+# Void Return:
+
+'return',
+]
+
+
+
 TEMPLATE = \
 """
 ID={id}
@@ -50,4 +63,14 @@ strategy=conditional
 
 """
 
-
+HUBBLE_TEMPLATE = \
+'''
+ID={id}
+variableName=foo
+className={class_name}
+methodName={method_name}
+lineNumber={line_number}
+parameterTypes={params}
+byteCodeIndex={bci}
+strategy={strategy}
+'''
