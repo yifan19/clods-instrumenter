@@ -131,30 +131,17 @@ public class Transformer implements ClassFileTransformer {
                         }
                         LOG.info("Transforming method {}", instrumentedMethod.getLongName());
                         // CtMethod instrumentedMethod = ctClass.getDeclaredMethod(rule.getMethodName());
-                        String insertedLine =
-                            "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.put( (long)" +
-                            rule.getVariableName() + ", (long)" +
-                            rule.getId() + ");";
                         // log_bci(instrumentedMethod, ctClass);
-                        if (rule.getlineNumber() == -1) {
-                            if (rule.getStrategy().equals("logCutting")) {
-                                String insertedLine2 =
-                                    "android.util.Log.w(\"CLODS\", \"" + rule.getId() + "\")";
-                                instrumentedMethod.insertBefore(insertedLine2);
-                            } else if (rule.getStrategy().equals("stackTrace")) {
-                                String insertedLine3 = "ca.uoft.drsg.bminstrument.InstrumentationAgent.buffer.putStack();";
-                                instrumentedMethod.insertBefore(insertedLine3);
-
-                            } else {
-                                instrumentedMethod.insertBefore(insertedLine);
-
-                            }
-                        } else {
                         //     instrumentedMethod.insertAt(rule.getlineNumber(), 
                         //         insertedLine);
-                            BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, insertedLine);
+                        // android.util.Log.w(\"CLODS\", android.util.Log.getStackTraceString(new Exception()));
+                        BytecodeManip bcm = new BytecodeManip(instrumentedMethod, ctClass, rule, "");
+                        if (rule.getlineNumber() == -1 ) {
+                            bcm.logStackTrace();
+                        } else {
                             bcm.logStack();
                         }
+                    
                         // log_bci(instrumentedMethod, ctClass);
         
                         // instrumentedMethod.insertAt(rule.getlineNumber(), 

@@ -42,8 +42,10 @@ public class BytecodeManip {
 
     private String objectClass = "java.lang.Object";
     private String hashCodeMethod = "hashCode";
-    private String hashCodeMethodType = "()I;";
+    private String hashCodeMethodType = "()I";
 
+    private String toStringMethod = "toString";
+    private String toStringMethodType = "()Ljava/lang/String;";
 
     private CtBehavior method;
     private CtClass clazz;
@@ -152,6 +154,14 @@ public class BytecodeManip {
 
         return variableIndex;
     }
+    private String decodeFunctionReturnType(CodeIterator ci, int index) {
+        int globalIndex = ci.s16bitAt(index + 1);
+        ConstPool constPool = clazz.getClassFile2().getConstPool();
+        String signature = constPool.getMethodrefType(globalIndex);
+        LOG.info("signature = " + signature);
+        return signature;
+    }
+
     private String decodeFieldType(int op, CodeIterator ci, int index) {
         int globalIndex = ci.s16bitAt(index + 1);
         ConstPool constPool = clazz.getClassFile2().getConstPool();
@@ -160,8 +170,14 @@ public class BytecodeManip {
         return fieldType;
     }
 
+    private void injectStackTrace(int op, CodeIterator ci, int index, Bytecode code) {
+        grabStackTrace(code);
+        callPut(code);
+    }
+
     private void injectInstrumentation(int op, CodeIterator ci, int index, Bytecode code) {
         /* hack to test out instrumentating after a branch */
+        LOG.info("conditional");
         if (rule.getStrategy().equals("conditional")) {
             grabValueLoop(code);
             callPutEntry(code);
@@ -186,12 +202,41 @@ public class BytecodeManip {
             callPut(code);
             break;
 
+            case Opcode.INVOKEINTERFACE:
+            case Opcode.INVOKESTATIC:
+            case Opcode.INVOKESPECIAL:
+            case Opcode.INVOKEDYNAMIC:
             case Opcode.INVOKEVIRTUAL:
-            if (!rule.getStrategy().equals("beforeSelfCall")) {
+
+            String returnSignature = decodeFunctionReturnType(ci, index);
+            if (rule.getStrategy().equals("beforeSelfCall")) {
+                grabValueObject(code);
+                callPut(code);
+            } else {
                 moveToAfterByteCode(ci);
+                switch(returnSignature.charAt(returnSignature.length() - 1)) {
+                // Z //for boolean:
+                // B //for byte:
+                // S //for short:
+                // C //for char:
+                case 'L':
+                case ';':
+                grabValueObject(code);
+                callPutObject(code);
+                break;
+                case 'J': // for long:
+                case 'D': //for double
+                grabValue64(code);
+                callPut(code);
+                break;
+                case 'I': // for int:
+                case 'F':// for float:
+                default: // other
+                grabValueDefault(code);
+                callPut(code);
+                break;
             }
-            grabValueObject(code);
-            callPut(code);
+            }
             break;
 
             case Opcode.PUTFIELD:
@@ -301,11 +346,45 @@ public class BytecodeManip {
         code.add(Bytecode.I2L);
         code.addInvokestatic(stringClass, stringMethod, stringMethodTypeLong);
     }
-    private void grabValueObject(Bytecode code) {
+
+    private void grabStackTrace(Bytecode code) {
+    /*
+        11: new           #7                  // class java/lang/Exception
+        14: dup
+        15: invokespecial #8                  // Method java/lang/Exception."<init>":()V
+        18: invokestatic  #9                  // Method getStackTraceString:(Ljava/lang/Throwable;)Ljava/lang/String;
+        21: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+    */
+        String excepClass = "java/lang/Exception";
+        String excepConstructor = "<init>";
+        String excepSignature = "()V";
+        String getStackMethod = "getStackTraceString";
+        String getStackSignature = "(Ljava/lang/Throwable;)Ljava/lang/String;";
+        
+        code.addNew(excepClass);
         code.add(Bytecode.DUP);
-        code.addInvokevirtual(objectClass, hashCodeMethod, hashCodeMethodType);
-        code.add(Bytecode.I2L);
-        code.addInvokestatic(stringClass, stringMethod, stringMethodTypeLong);
+        code.addInvokespecial(excepClass, excepConstructor, excepSignature);
+        code.addInvokestatic(bufferClazz, getStackMethod, getStackSignature);
+    }
+    private void grabValueObject(Bytecode code) {
+
+        //
+        // if object == null:
+        //     object = new String();
+        // object.toString();
+        code.add(Bytecode.DUP);
+        code.add(Bytecode.DUP);
+        code.add(Bytecode.IFNONNULL); // 3
+        code.addIndex(11);
+        {
+            code.add(Bytecode.POP); // 1
+            code.addNew("java/lang/String"); //3
+            code.add(Bytecode.DUP); // Duplicate the new object reference // 1
+            code.addInvokespecial("java/lang/String", "<init>", "()V"); // Call String constructor //3
+        }
+        code.addInvokevirtual(objectClass, toStringMethod, toStringMethodType);
+        // code.add(Bytecode.I2L);
+        // code.addInvokestatic(stringClass, stringMethod, stringMethodTypeLong);
         // code.addGetstatic(instAgentClazz, bufferVar, bufferType);
         // assume data is a java word (4 Bytes)
         // code.add(Bytecode.SWAP);
@@ -349,8 +428,8 @@ public class BytecodeManip {
 
     }
     private void callPutEntry(Bytecode code) {
-        code.addLdc("CLODS");
-        code.addLdc(Integer.toString(rule.getId()));
+        code.addLdc("CLODS/" + Integer.toString(rule.getId()) );
+        code.addLdc("");
         code.addInvokestatic(bufferClazz, putLoopMethod, putLoopMethodType);
         code.add(Bytecode.POP);
     }
@@ -469,6 +548,34 @@ public class BytecodeManip {
         }
         return index;
     }
+    public void logStackTrace() {
+        LOG.info("logging at bytecode index {}", rule.getByteCodeIndex());;
+     
+        CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
+        int start_index = 0;
+        ConstPool cPool = clazz.getClassFile().getConstPool();
+        Bytecode code = new Bytecode(cPool);
+        CodeIterator ci = codeAttribute.iterator();
+        ci.move(start_index);
+        int op = ci.byteAt(start_index);
+        LOG.info(Mnemonic.OPCODE[op]);
+        injectStackTrace(op, ci, start_index, code);
+
+
+        try {
+            ci.insert(code.get());
+            int old_stack = codeAttribute.getMaxStack();
+            int new_stack = codeAttribute.computeMaxStack();
+            if (old_stack < new_stack) {
+                LOG.info("stackSizeChange: {} -> {}", old_stack, new_stack);
+            }
+        } catch (BadBytecode e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     public void logVar() {
 
         CodeAttribute codeAttribute = method.getMethodInfo().getCodeAttribute();
