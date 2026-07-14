@@ -151,7 +151,8 @@ public class Transformer implements ClassFileTransformer {
                 }
                 byteCode = ctClass.toBytecode();
                         
-                try (FileOutputStream fos = new FileOutputStream("/data/new" + classRules.getClassName() + ".class")) {
+                String outDir = System.getProperty("bminstrument.outdir", "/data");
+                try (FileOutputStream fos = new FileOutputStream(outDir + "/new" + classRules.getClassName() + ".class")) {
                     fos.write(byteCode);
                 }
 
